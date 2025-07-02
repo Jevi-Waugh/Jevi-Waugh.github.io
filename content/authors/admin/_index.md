@@ -2,9 +2,6 @@
 # Display name
 title: Jevi Waugh
 
-# Name pronunciation (optional)
-name_pronunciation: JV
-
 # Full name (for SEO)
 first_name: Jevi
 last_name: Waugh
@@ -15,10 +12,6 @@ status:
 
 # Is this the primary user of the site?
 superuser: true
-image:
-  filename: avatar.jpg
-  focal_point: "Smart"
-  preview_only: false
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
@@ -31,30 +24,30 @@ organizations:
   - name: UQ
     url: https://www.uq.edu.au/
 
+# Profile picture
+# Place your image in the `static/img/` folder and reference it here.
+image:
+  filename: avatar.jpg
+  focal_point: "Smart"
+  preview_only: false
+
 # Social network links
-# Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
     url: 'mailto:your-email@example.com'
     label: E-mail Me
-  - icon: brands/x
-    url: https://twitter.com/GetResearchDev
-  - icon: brands/instagram
-    url: https://www.instagram.com/
   - icon: brands/github
-    url: https://github.com/gcushen
+    url: https://github.com/Jevi-Waugh
   - icon: brands/linkedin
     url: https://www.linkedin.com/
-  - icon: academicons/google-scholar
-    url: https://scholar.google.com/
-  - icon: academicons/orcid
-    url: https://orcid.org/
 
+# Interests
 interests:
   - Machine Learning
   - Deep Learning
-  - Natural Language Proccessing
+  - Natural Language Processing
 
+# Education
 education:
   - area: Bachelor of Computer Science
     institution: The University of Queensland
@@ -62,9 +55,6 @@ education:
     date_end: 2020-12-31
     summary: |
       Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com'
   - area: MEng Artificial Intelligence
     institution: Massachusetts Institute of Technology
     date_start: 2016-01-01
@@ -87,6 +77,8 @@ education:
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+# Work Experience
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
@@ -112,7 +104,6 @@ work:
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 # Skills
-# Add your own SVG icons to `assets/media/icons/`
 skills:
   - name: Technical Skills
     items:
@@ -145,6 +136,7 @@ skills:
         percent: 80
         icon: camera
 
+# Languages
 languages:
   - name: English
     percent: 100
@@ -154,9 +146,6 @@ languages:
     percent: 25
 
 # Awards.
-#   Add/remove as many awards below as you like.
-#   Only `title`, `awarder`, and `date` are required.
-#   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
   - title: Neural Networks and Deep Learning
     url: https://www.coursera.org/learn/neural-networks-deep-learning
@@ -185,8 +174,6 @@ awards:
       Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
 ---
 
-biography: |
-  This is a new test message for the About Me section.TESTING If you see this, 
-  it means the changes are finally being rendered and that I am currently building my academic
-  website using this template.
+## About Me
 
+This is a new test message for the About Me section. If you see this, it means the changes are finally being rendered!

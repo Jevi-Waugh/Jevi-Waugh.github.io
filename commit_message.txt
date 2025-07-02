@@ -1,1 +1,1 @@
-Update image path and rebuild
+Revert homepage biography block and update image path

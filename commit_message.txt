@@ -1,1 +1,1 @@
-Update About Me section title on homepage
+Update image path and About Me section on homepage

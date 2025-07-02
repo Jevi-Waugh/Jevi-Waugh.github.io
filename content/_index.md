@@ -11,7 +11,7 @@ design:
 sections:
   - block: markdown
     content:
-      title: About Me
+      title: About Jevi
       text: |
         This is a new test message for the About Me section. If you see this, it means the changes are finally being rendered!
     design:

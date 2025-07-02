@@ -1,1 +1,1 @@
-Update About Me section via biography field
+Update baseURL in hugo.yaml

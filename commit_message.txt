@@ -1,1 +1,1 @@
-Rename conflicting _index.md in authors directory
+Update About Me section via biography field

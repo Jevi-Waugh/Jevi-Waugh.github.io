@@ -1,1 +1,1 @@
-Replace biography block with markdown block on homepage
+Update About Me section title on homepage

@@ -15,6 +15,10 @@ status:
 
 # Is this the primary user of the site?
 superuser: true
+image:
+  filename: avatar.jpg
+  focal_point: "Smart"
+  preview_only: false
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true

@@ -1,1 +1,1 @@
-Revert homepage biography block and update image path
+Revert homepage to hero block and update image path

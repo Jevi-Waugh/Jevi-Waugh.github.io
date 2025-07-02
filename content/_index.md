@@ -9,13 +9,26 @@ design:
   spacing: "6rem"
 
 sections:
-  - block: markdown
+  - block: resume-biography-3
     content:
-      title: About Jevi
-      text: |
-        This is a new test message for the About Me section. If you see this, it means the changes are finally being rendered!
+      # Choose a user profile to display (a folder name within `content/authors/`)
+      username: admin
+      # Show a call-to-action button under your biography? (optional)
+      button:
+        text: Download CV
+        url: uploads/resume.pdf
     design:
-      columns: '1'
+      css_class: dark
+      background:
+        color: black
+        image:
+          # Add your image background to `assets/media/`.
+          filename: stacked-peaks.svg
+          filters:
+            brightness: 1.0
+          size: cover
+          position: center
+          parallax: false
   - block: markdown
     content:
       title: '📚 My Research'

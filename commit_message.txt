@@ -1,1 +1,1 @@
-Update image path and About Me section on homepage
+Update profile image path and rebuild

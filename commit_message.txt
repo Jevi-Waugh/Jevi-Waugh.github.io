@@ -1,1 +1,1 @@
-Revert homepage to hero block and update image path
+Update image path and rebuild

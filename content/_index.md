@@ -16,7 +16,7 @@ sections:
       text: |
         This is a new test message for the About Me section. If you see this, it means the changes are finally being rendered!
       image:
-        filename: avatar.jpg
+        filename: img/avatar.jpg
         focal_point: "Smart"
     design:
       css_class: dark

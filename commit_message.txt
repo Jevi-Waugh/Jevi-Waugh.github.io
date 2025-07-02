@@ -1,1 +1,1 @@
-Update baseURL in hugo.yaml
+Update About Me section content

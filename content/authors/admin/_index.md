@@ -16,7 +16,7 @@ status:
 # Is this the primary user of the site?
 superuser: true
 image:
-  filename: /img/avatar.jpg
+  filename: avatar.jpg
   focal_point: "Smart"
   preview_only: false
 

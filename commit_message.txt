@@ -1,1 +1,1 @@
-Update profile image path and rebuild
+Update image path and rebuild

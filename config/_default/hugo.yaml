@@ -23,7 +23,7 @@ removePathAccents: true
 
 build:
   writeStats: true
-publishDir: docs
+publishDir: public
 enableGitInfo: false
 summaryLength: 30
 pagination:

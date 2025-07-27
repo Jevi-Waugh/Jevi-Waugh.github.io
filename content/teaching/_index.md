@@ -11,12 +11,26 @@ cascade:
 
 sections:
   - block: collection
-    id: teaching
+    id: teaching-academic
     content:
-      title: Teaching
+      title: Academic Teaching
       filters:
         folders:
           - teaching
+        tags:
+          - academic
+    design:
+      view: article-grid
+      columns: 2
+  - block: collection
+    id: teaching-independent
+    content:
+      title: Independent Teaching
+      filters:
+        folders:
+          - teaching
+        tags:
+          - independent
     design:
       view: article-grid
       columns: 2

@@ -6,6 +6,7 @@ type: docs
 math: false
 tags:
   - Python
+  - independent
 image:
   caption: 'Embed rich media such as videos and LaTeX math'
 ---

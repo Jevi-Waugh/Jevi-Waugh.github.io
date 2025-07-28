@@ -27,7 +27,7 @@ summary: PHAML enhances machine learning by integrating topological features fro
 
 tags:
 - Machine learning & Topological Data analysis
-featured: false
+featured: true
 
 # links:
 # - name: ""

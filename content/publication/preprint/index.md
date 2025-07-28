@@ -1,5 +1,5 @@
 ---
-title: "An example preprint / working paper"
+title: "Machine Learning-Based Classification of Table Tennis Swings Using Racket Kinematics"
 authors:
 - admin
 date: "2019-04-07T00:00:00Z"

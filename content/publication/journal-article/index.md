@@ -1,12 +1,11 @@
 ---
-title: "An example journal article"
+title: "Leveraging Persistent Homology for Topological Feature Extraction in Machine Learning: The PH-AML Pipeline"
 authors:
 - admin
-- Robert Ford
-author_notes:
-- "Equal contribution"
-- "Equal contribution"
-date: "2015-09-01T00:00:00Z"
+# author_notes:
+# - "Equal contribution"
+# - "Equal contribution"
+date: "2025-04-01T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
@@ -21,26 +20,21 @@ publication_types: ["article-journal"]
 publication: "*Journal of Source Themes, 1*(1)"
 publication_short: ""
 
-abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+abstract: Conventional Machine learning models often rely on purely statistical data while overlooking the rich global structure of complex datasets. In this paper, we propose PHAML (Persistent Homology-Augmented Machine Learning), a pipeline designed to address this shortcoming by effectively extracting topological descriptors from high-dimensional data and inserting them into standard supervised models. Specifically, we construct simplicial complexes through the Vietoris–Rips filtrations over the input data, compute persistent homology to obtain persistent landscapes and barcodes and convert this data into quantitative feature vectors to feed to ML models such as Support Vector Machine and Logistic Regression. Those topological features are integrated with traditional inputs, yielding an augmented representation of the data featuring global shape and general variations. PHAML is assessed on synthetic and real-world datasets, demonstrating improvements in classification performance, accuracy, and noise robustness and leveraging topological invariants' stability under perturbations. We also compare a baseline model with conventional features with a PHAML model to quantify the performance improvements attributable to persistent homology. Our results underscore the benefit of combining topological descriptors with classical features, highlighting the promise of persistent homology-based machine learning models in which global structure is preserved.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: PHAML enhances machine learning by integrating topological features from persistent homology with traditional data inputs, capturing global structure through Vietoris–Rips filtrations. This approach improves classification accuracy and robustness compared to baseline models using only conventional features.
 
 tags:
-- Source Themes
+- Machine learning & Topological Data analysis
 featured: false
 
 # links:
 # - name: ""
 #   url: ""
 url_pdf: http://arxiv.org/pdf/1512.04133v1
-url_code: 'https://github.com/HugoBlox/hugo-blox-builder'
-url_dataset: ''
-url_poster: ''
-url_project: ''
-url_slides: ''
-url_source: ''
-url_video: ''
+url_code: 'https://github.com/Jevi-Waugh/PH-AML'
+
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 

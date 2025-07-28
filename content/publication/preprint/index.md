@@ -21,19 +21,17 @@ abstract: This report investigates the application of machine learning models to
 
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: This report explores using machine learning to classify age and gender from racket kinematics during table swings, using a modified dataset from DRYAD. It compares KNN, SVM, and One-vs-Rest Logistic Regression, revealing how racket motion features influence classification performance.
 
 tags:
-- Large Language Models
+- Machine Learning
 
 featured: true
 
 links:
-- name: Custom Link
-  url: http://example.org
 url_pdf: uploads/ML_Table_tennis_paper.pdf
 url_code: 'https://github.com/Jevi-Waugh'
-url_dataset: '#'
+url_dataset: 'https://datadryad.org/dataset/doi:10.5061/dryad.0zpc8677f'
 url_project: 'https://github.com/Jevi-Waugh'
 
 # Featured image

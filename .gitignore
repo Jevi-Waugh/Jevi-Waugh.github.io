@@ -2,6 +2,7 @@
 /public/
 /resources/
 /docs/
+/go
 
 # Other
 .hugo_build.lock

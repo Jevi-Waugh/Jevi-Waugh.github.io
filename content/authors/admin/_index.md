@@ -154,4 +154,4 @@ awards:
 
 ## About Me
 
-This is a new test message for the About Me section. If you see this, it means the changes are finally being rendered! I am still creating this website.
+I'm a computer science and data science student at UQ focused heavily on research and real world practical aspects of machine learning. Why did I choose this field? Well Originally, I was going to do mechatronics because I watched a lot of Ironman movies, but then came the realisation of the shear power of coding. So far that's just software engineering. Then I got introduced to traditional computer vision and Intelligent Agents and i thought "What!!!, you can integrate maths to solve problems through just programming it". From there on, I decided to purse Computer science degree because intuitively the field of mathematics for me at least is just reasoning and logic to solve complex problems. And I was naturally good at coding. So this is a bit my entry to this field.

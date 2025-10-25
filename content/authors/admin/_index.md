@@ -8,7 +8,7 @@ last_name: Waugh
 
 # Status emoji
 status:
-  icon: 💎
+  icon: ♞
 
 # Is this the primary user of the site?
 superuser: true
@@ -44,7 +44,6 @@ profiles:
     icon_pack: fab
     link: "https://www.linkedin.com/in/jevi-waugh-b130ab254/"
   - icon: lambda
-    icon_pack: custom
     link: "https://uqcs.org/about"
 
 

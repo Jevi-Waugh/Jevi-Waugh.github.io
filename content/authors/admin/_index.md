@@ -33,15 +33,20 @@ image:
 
 # Social network links
 profiles:
-  - icon: at-symbol
-    url: 'mailto:jevi.waugh@student.uq.edu.au
-    label: E-mail Me
+  - icon: envelope
+    icon_pack: fas
+    link: "mailto:jevi.waugh@student.uq.edu.au"
+    label: "E-mail Me"
   - icon: brands/github
-    url: https://github.com/Jevi-Waugh
+    icon_pack: fab
+    link: "https://github.com/Jevi-Waugh"
   - icon: brands/linkedin
-    url: https://www.linkedin.com/in/jevi-waugh-b130ab254/
+    icon_pack: fab
+    link: "https://www.linkedin.com/in/jevi-waugh-b130ab254/"
   - icon: lambda
-    url: https://uqcs.org/about
+    icon_pack: custom
+    link: "https://uqcs.org/about"
+
 
 # Interests
 interests:

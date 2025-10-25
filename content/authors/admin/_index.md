@@ -46,8 +46,6 @@ profiles:
   - icon: lambda
     link: "https://uqcs.org/about"
 
-
-
 # Interests
 interests:
   - Machine Learning

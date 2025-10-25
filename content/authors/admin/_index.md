@@ -41,7 +41,7 @@ profiles:
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/jevi-waugh-b130ab254/
   - icon: lambda
-    url: https://uqcs.org/about/
+    url: https://uqcs.org/about
 
 # Interests
 interests:

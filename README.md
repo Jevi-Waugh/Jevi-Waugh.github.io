@@ -1,4 +1,6 @@
-[bep]: https://github.com/bep
+# Academic Website
+
+<!-- [bep]: https://github.com/bep
 [bugs]: https://github.com/gohugoio/hugo/issues?q=is%3Aopen+is%3Aissue+label%3ABug
 [contributing]: CONTRIBUTING.md
 [create a proposal]: https://github.com/gohugoio/hugo/issues/new?labels=Proposal%2C+NeedsTriage&template=feature_request.md
@@ -297,4 +299,4 @@ gopkg.in/yaml.v2="v2.4.0"
 gopkg.in/yaml.v3="v3.0.1"
 software.sslmate.com/src/go-pkcs12="v0.2.0"
 ```
-</details>
+</details> -->

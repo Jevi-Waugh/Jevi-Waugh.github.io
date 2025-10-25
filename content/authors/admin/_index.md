@@ -34,12 +34,14 @@ image:
 # Social network links
 profiles:
   - icon: at-symbol
-    url: 'mailto:your-email@example.com'
+    url: 'mailto:jevi.waugh@student.uq.edu.au
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/Jevi-Waugh
   - icon: brands/linkedin
-    url: https://www.linkedin.com/
+    url: https://www.linkedin.com/in/jevi-waugh-b130ab254/
+  - icon: lambda
+    url: https://uqcs.org/about/
 
 # Interests
 interests:
@@ -118,10 +120,10 @@ skills:
 languages:
   - name: English
     percent: 100
-  - name: Chinese
-    percent: 75
-  - name: Portuguese
-    percent: 25
+  - name: French
+    percent: 100
+  - name: Créole
+    percent: 100
 
 # Awards.
 awards:

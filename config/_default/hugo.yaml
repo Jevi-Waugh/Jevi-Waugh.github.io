@@ -5,6 +5,8 @@
 
 # Website name
 title: Jevi Waugh
+icon: assets/media/j.png
+
 # Website URL
 baseURL: 'https://jevi-waugh.github.io/'
 

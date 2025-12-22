@@ -22,16 +22,4 @@ sections:
     design:
       view: article-grid
       columns: 2
-  - block: collection
-    id: teaching-independent
-    content:
-      title: Independent Teaching
-      filters:
-        folders:
-          - teaching
-        tags:
-          - independent
-    design:
-      view: article-grid
-      columns: 2
 ---

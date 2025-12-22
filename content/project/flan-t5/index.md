@@ -5,11 +5,11 @@ authors:
 # author_notes:
 # - "Equal contribution"
 
-date: "YYYY-MM-DDT00:00:00Z"
+date: "2025-12-01T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "YYYY-MM-DDT00:00:00Z"
+publishDate: "2025-12-01T00:00:00Z"
 
 # Publication type (Hugo CSL standard).
 publication_types: ["article-journal"]

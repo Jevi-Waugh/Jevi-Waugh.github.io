@@ -106,7 +106,7 @@ skills:
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
-      - name: Hiking
+      - name: Bodyboarding  
         description: ''
         percent: 60
         icon: person-simple-walk
@@ -159,10 +159,10 @@ awards:
 
 ## About Me
 
-I am a final-year Computer Science student at the University of Queensland, majoring in Machine Learning, with plans to pursue a Master of Data Science focusing on advanced statistics, numerical linear algebra, and deep learning. My academic and project experience spans multiple programming paradigms and languages, including Python, ANSI-C, Java, R, and SQL.
+I am a recent graduate of a Computer Science degree, majoring in Machine Learning, and will be commencing a Master of Data Science with a strong focus on advanced statistics, numerical linear algebra, and deep learning. I have experience across multiple programming paradigms, including Python, ANSI-C, Java, R (R Studio) and SQL.
 
-My core interests lie in computer vision, language modelling, and optimisation—areas that bridge mathematical reasoning with computational creativity. I am motivated by the challenge of translating abstract mathematical concepts into efficient, real-world solutions through code. My journey into this field began with an interest in robotics and mechatronics, which evolved into a deeper appreciation for the logical and problem-solving nature of programming and applied mathematics.
+My core interests lie in Computer Vision, language modelling, and optimisation. I'm motivated by the challenge of transforming mathematical concepts into creative, impactful solutions.
 
-Outside of my technical pursuits, I enjoy exploring new music and camping, as both provide balance and perspective beyond the screen.
+Outside of the technical space, I enjoy discovering new music and spending time camping—there’s nothing quite like unplugging and getting away from it all.
 
 Note: I am still building this website, so some details may not yet be fully accurate.

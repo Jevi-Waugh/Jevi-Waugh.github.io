@@ -6,7 +6,7 @@ type: landing
 
 design:
   # Default section spacing
-  spacing: "6rem"
+  spacing: "4rem"
 
 sections:
   - block: resume-biography-3
@@ -18,6 +18,7 @@ sections:
         text: Download CV
         url: uploads/resume.pdf
     design:
+      columns: '3'
       css_class: dark
       background:
         color: black
@@ -29,6 +30,10 @@ sections:
           size: cover
           position: center
           parallax: false
+      # spacing:
+      #   padding: [3rem, 0, 3rem, 0]
+
+          
   - block: markdown
     content:
       title: '📚 My Skills and Research'

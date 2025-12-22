@@ -62,7 +62,7 @@ education:
     date_end: 2028-06-01
     summary: |
       
-
+  
   - area: Bachelor of Computer Science (Major in Machine Learning)
     institution: The University of Queensland
     date_start: 2023-02-02
@@ -85,7 +85,7 @@ work:
 
   - position: Industry Officer 
     company_name: UQ Computing Society (UQCS)
-    company_url: 'https://uqcs.org/'
+    company_url: 'https://uqcs.org/about'
     date_start: 2025-10-01
     date_end: ''
     summary: |2-

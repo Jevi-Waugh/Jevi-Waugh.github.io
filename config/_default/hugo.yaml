@@ -5,7 +5,7 @@
 
 # Website name
 title: Jevi Waugh
-icon: assets/media/j.png
+icon: assets/media/lambda.png
 
 # Website URL
 baseURL: 'https://jevi-waugh.github.io/'
@@ -57,3 +57,8 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
+
+params:
+  custom_css:
+    - css/custom.css
+

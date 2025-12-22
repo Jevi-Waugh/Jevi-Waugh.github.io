@@ -7,9 +7,9 @@ first_name: Jevi
 last_name: Waugh
 
 # Status emoji
-status:
-  icon: λ
-
+status: 
+  icon: :)
+  background: white
 # Is this the primary user of the site?
 superuser: true
 
@@ -43,8 +43,10 @@ profiles:
   - icon: brands/linkedin
     icon_pack: fab
     link: "https://www.linkedin.com/in/jevi-waugh-b130ab254/"
-  - icon: lambda
+    
+  - icon: Circle-Blue
     link: "https://uqcs.org/about"
+    label: "UQCS"
 
 # Interests
 interests:
@@ -54,70 +56,144 @@ interests:
 
 # Education
 education:
-  - area: Bachelor of Computer Science
-    institution: The University of Queensland
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: Master of Data Science/Master of Science in Informatics
+    institution: The University of Queensland (UQ)/ Technical University of Munich (TUM)
+    date_start: 2026-02-02
+    date_end: 2028-06-01
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
+      
+
+  - area: Bachelor of Computer Science (Major in Machine Learning)
+    institution: The University of Queensland
+    date_start: 2023-02-02
+    date_end: 2025-12-16
+    summary: |
+      Capstone project on provenance of AI code detection and Policy control for organisations 
 
 # Work Experience
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
-    company_url: ''
-    company_logo: ''
-    date_start: 2021-01-01
+  - position: UQ Summer Research Scholar 
+    company_name: School of Electrical Engineering and Computer Science at UQ
+    company_url: 'https://www.uq.edu.au/'
+    date_start: 2026-01-12
+    date_end: 2026-02-20
+    summary: |2-
+      Mathematical and Imaging Models for Understanding AI
+      - Semantic visual coding
+      - Fourier space
+      - Deep Learning Models
+
+  - position: Industry Officer 
+    company_name: UQ Computing Society (UQCS)
+    company_url: 'https://uqcs.org/'
+    date_start: 2025-10-01
+    date_end: ''
+    summary: |2-
+      Mathematical and Imaging Models for Understanding AI
+      - Semantic visual coding
+      - Fourier space
+      - Deep Learning Models
+
+  - position: Casual Academic
+    company_name: The University of Queensland
+    company_url: 'https://www.uq.edu.au/'
+    date_start: 2025-07-01
     date_end: ''
     summary: |2-
       Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
+      - Delivered content for CSSE1001, engineering practices. Provide feedback to improve coding skills and confidence.
+      - Guide students in programming fundamentals, debugging, object-oriented design, and software.
+
+  - position: AI Integration Engineer
+    company_name: Apex Fincap
     company_url: ''
     company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    date_start: 2024-11-01
+    date_end: 2025-02-01
     summary: |
-      Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      AI systems that summarised financial data and auto-completed reports, improving efficiency and accuracy for brokers.
+
 
 # Skills
 skills:
-  - name: Technical Skills
+  - name: languages
     items:
       - name: Python
         description: ''
         percent: 80
-        icon: code-bracket
-      - name: Data Science
+        icon: language-python
+
+      - name: C (Ansi-C)
         description: ''
         percent: 100
-        icon: chart-bar
-      - name: SQL
+        icon: c-circle-fill
+
+      - name: Haskell
+        percent: 100
+        icon: haskell1
+
+      - name: Java
         description: ''
-        percent: 40
-        icon: circle-stack
-  - name: Hobbies
-    color: '#eeac02'
-    color_border: '#f0bf23'
+        icon: java
+
+      - name: Mojo (Familiar)
+        icon: mojo
+
+
+      - name: Julia (Familiar)
+        icon: julia-original
+      - name: SQL (Familiar)
+        icon: sql
+      - name: R (Familiar)
+        icon: RStudio
+      
+  - name: Frameworks
     items:
+      - name: Pytorch
+        icon: pytorch-original
+      - name: Numpy
+        icon: numpy
+      - name: Hugging face & transformers 
+        icon: huggingface-color
+      - name: Matplotlib
+        icon: matplotlib
+      - name: Scikit-learn
+        icon: scikitlearn-original
+      - name: open-cv
+        icon: opencv-plain
+      - name: pandas
+        icon: pandas
+
+  - name: Hobbies
+    items:
+      - name: Poster collection
+        icon: keyframes
+
+      - name: Music
+        icon: apple-music
+      
+      - name: Video Games
+        icon: gaming
+      
       - name: Bodyboarding  
-        description: ''
-        percent: 60
-        icon: person-simple-walk
-      - name: Cats
-        description: ''
-        percent: 100
-        icon: cat
-      - name: Photography
-        description: ''
-        percent: 80
-        icon: camera
+        icon: swim
+        icon_pack: mdi
+
+      - name: Dog walking
+        icon: dog-side
+        icon_pack: mdi
+
+      - name: Basketball
+        icon: basketball
+        icon_pack: mdi
+      
+      - name: Football
+        icon: soccer
+
+      
+
+
+
 
 # Languages
 languages:
@@ -125,36 +201,22 @@ languages:
     percent: 100
   - name: French
     percent: 100
-  - name: Créole
+  - name: Mauritian Créole
     percent: 100
 
 # Awards.
-awards:
-  - title: Neural Networks and Deep Learning
-    url: https://www.coursera.org/learn/neural-networks-deep-learning
-    date: '2023-11-25'
-    awarder: Coursera
-    icon: coursera
-    summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
-  - title: Blockchain Fundamentals
-    url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-    date: '2023-07-01'
-    awarder: edX
-    icon: edx
-    summary: |
-      Learned:
-      - Synthesize your own blockchain solutions
-      - Gain an in-depth understanding of the specific mechanics of Bitcoin
-      - Understand Bitcoin’s real-life applications and learn how to attack and destroy Bitcoin, Ethereum, smart contracts and Dapps, and alternatives to Bitcoin’s Proof-of-Work consensus algorithm
-  - title: 'Object-Oriented Programming in R'
-    url: https://www.datacamp.com/courses/object-oriented-programming-with-s3-and-r6-in-r
-    certificate_url: https://www.datacamp.com
-    date: '2023-01-21'
-    awarder: datacamp
-    icon: datacamp
-    summary: |
-      Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
+# awards:
+#   - title: Blockchain Fundamentals
+#     url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
+#     date: '2023-07-01'
+#     awarder: edX
+#     icon: edx
+#     summary: |
+#       Learned:
+#       - Synthesize your own blockchain solutions
+#       - Gain an in-depth understanding of the specific mechanics of Bitcoin
+#       - Understand Bitcoin’s real-life applications and learn how to attack and destroy Bitcoin, Ethereum, smart contracts and Dapps, and alternatives to Bitcoin’s Proof-of-Work consensus algorithm
+  
 ---
 
 ## About Me

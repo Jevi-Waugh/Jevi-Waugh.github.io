@@ -89,10 +89,10 @@ work:
     date_start: 2025-10-01
     date_end: ''
     summary: |2-
-      Mathematical and Imaging Models for Understanding AI
-      - Semantic visual coding
-      - Fourier space
-      - Deep Learning Models
+      - Secure sponsorships for UQCS by reaching out to companies, pitching the society, and negotiating agreements.
+      - Prepare a prospectus to distribute to potential sponsors 
+      - Maintain a relationship with other non-sponsoring industry stakeholders
+      - Bridge the Gap between students and industry partners.
 
   - position: Casual Academic
     company_name: The University of Queensland

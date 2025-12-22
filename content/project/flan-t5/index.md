@@ -74,7 +74,6 @@ convergence behaviour, and parameter efficiency.
 ## Example Visuals
 
 <!-- Replace with actual images if desired -->
-![FLAN-T5 encoder-decoder architecture](featured.png)
 ![LoRA adapter integration](lora.png)
 ![Training curves comparison](lora_vs_fft_comparison_3epochs.png)
 

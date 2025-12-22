@@ -3,6 +3,8 @@
 /resources/
 /docs/
 /go
+# Templates for later
+/content/event/*
 
 # Other
 .hugo_build.lock
@@ -10,6 +12,3 @@ hugo_stats.json
 .DS_Store
 Thumbs.db
 
-
-# Templates for later
-/content/event/*

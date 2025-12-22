@@ -18,10 +18,10 @@ sections:
         text: Download CV
         url: uploads/resume.pdf
     design:
-      columns: '3'
+      columns: '2'
       css_class: dark
       background:
-        color: black
+        color: light
         image:
           # Add your image background to `assets/media/`.
           filename: stacked-peaks.png

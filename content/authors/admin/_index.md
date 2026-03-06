@@ -71,6 +71,28 @@ education:
 
 # Work Experience
 work:
+  - position: Research Assistant
+    company_name: The University of Queensland
+    company_url: 'https://www.uq.edu.au/'
+    date_start: 2026-03-16
+    date_end: ''
+    summary: |2-
+      I am currently doing some early research on a generalised shuffling technique before I get fully started. I start this role in Mid-March.
+
+  - position: Casual Academic
+    company_name: The University of Queensland
+    company_url: 'https://www.uq.edu.au/'
+    date_start: 2026-02-23
+    date_end: ''
+    summary: |2-
+      Courses I tutor:
+      - COMP4702 - Machine Learning
+      - COMP3400 - Functional and Logic Programming
+      - COMP2048 - Theory of Computing
+      - CSSE1001 - Introduction to Software Engineering 
+
+        Click on [here](https://jevi-waugh.github.io/teaching/) for more detail.
+
   - position: UQ Summer Research Scholar 
     company_name: School of Electrical Engineering and Computer Science at UQ
     company_url: 'https://www.uq.edu.au/'
@@ -220,10 +242,6 @@ languages:
 
 ## About Me
 
-I am a recent graduate of a Computer Science degree, majoring in Machine Learning, and will be commencing a Master of Data Science with a strong focus on advanced statistics, numerical linear algebra, and deep learning. I have experience across multiple programming paradigms, including Python, ANSI-C, Java, R (R Studio) and SQL.
+I recently completed a Bachelor of Computer Science majoring in Machine Learning and have commenced a Master of Data Science at The University of Queensland. My studies focus on advanced statistics, numerical linear algebra, and deep learning, which form the mathematical and computational foundations of modern data science and machine learning.
 
-My core interests lie in Computer Vision, language modelling, and optimisation. I'm motivated by the challenge of transforming mathematical concepts into creative, impactful solutions.
-
-Outside of the technical space, I enjoy discovering new music and spending time camping—there’s nothing quite like unplugging and getting away from it all.
-
-Note: I am still building this website, so some details may not yet be fully accurate.
+I am particularly interested in understanding how mathematical ideas translate into real systems. Much of my work explores how machine learning models behave internally and how theoretical insights can guide the design of better algorithms.

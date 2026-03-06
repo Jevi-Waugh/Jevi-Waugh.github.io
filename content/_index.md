@@ -36,11 +36,15 @@ sections:
           
   - block: markdown
     content:
-      title: '📚 My Skills and Research'
+      title: '📚 Background'
       subtitle: ''
       text: |-
-        
-        
+        "I enjoy working on projects that explore how models behave internally and the mathematical ideas behind them. Trying to understand why a model works the way it does is something I find genuinely interesting, and it shapes how I approach both research and building systems.
+
+        Outside of computing, I enjoy discovering new music and going camping. It’s nice to step away from screens every now and then and spend some time outdoors (touch some grass), especially when most of the day is spent thinking about code, maths, and experiments.
+
+        Note: This website is still a work in progress, so some sections may change as I add more projects and updates."
+
         Please reach out to collaborate 😃
     design:
       columns: '1'

@@ -35,6 +35,9 @@ url_slides: "default"
 url_recording: "default"
 
 ---
+I have recently been selected as a presenter for the RP Showcase based on my recent summer research program.
+
+The following information is from the faculty:
 
 The Student Enrichment and Success unit warmly invites you to the 2026 Research Experiences Showcase!
 

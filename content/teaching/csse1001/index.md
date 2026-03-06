@@ -1,6 +1,6 @@
 ---
 title: Sofware Engineering at The University of Queensland
-summary: "I work as a tutor for this course."
+summary: "Introduction to Software Engineering through programming with particular focus on the fundamentals of computing and programming, using Python"
 date: "2025-07-28T00:00:00Z"
 reading_time: false
 share: false
@@ -13,4 +13,4 @@ image:
   preview_only: false
 ---
 
-I currently work as a casual academic tutor for the CSSE1001 course at the University of Queensland.
+I have been working as a Casual Academic for the CSSE1001 course at the University of Queensland since July 2025. In this course, I help first year students learn python and help them debug complex projects that they develop throughout the course. I also mark their assessment items.

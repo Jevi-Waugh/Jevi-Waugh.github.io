@@ -165,7 +165,7 @@ skills:
 
   - name: Hobbies
     items:
-      - name: Poster collection
+      - name: Yu-Gi-Oh Cards
         icon: keyframes
 
       - name: Music
@@ -182,7 +182,7 @@ skills:
         icon: dog-side
         icon_pack: mdi
 
-      - name: Basketball
+      - name: UQIC Basketball
         icon: basketball
         icon_pack: mdi
       

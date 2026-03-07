@@ -58,7 +58,7 @@ education:
   - area: Master of Data Science/Master of Science in Informatics
     institution: The University of Queensland (UQ)/ Technical University of Munich (TUM)
     date_start: 2026-02-02
-    date_end: 2028-06-01
+    # date_end: 2028-06-01
     summary: |
       
   

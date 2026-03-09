@@ -30,9 +30,9 @@ tags: [Research, Segmentation, Imaging Models]
 
 
 url_code: 'https://github.com/imwendi/psycho_summer_proj/tree/jevi/segmentation/simpleae3/fourier_shuffle'
-url_pdf: "default"
-url_slides: "default"
-url_recording: "default"
+url_slides: "uploads/psycho.pdf"
+# url_slides: "default"
+# url_recording: "default"
 
 ---
 I have recently been selected as a presenter for the RP Showcase based on my recent summer research program.

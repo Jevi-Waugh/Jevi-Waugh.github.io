@@ -38,7 +38,4 @@ url_slides: "uploads/psycho.pdf"
 
 ## Watch the Talk Recording
 
-<video width="640" height="360" controls>
-  <source src="/uploads/2026_SRP.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/1SQpnOCTveo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

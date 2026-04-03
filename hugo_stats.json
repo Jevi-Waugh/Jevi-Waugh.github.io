@@ -22,6 +22,7 @@
       "hr",
       "html",
       "i",
+      "iframe",
       "img",
       "input",
       "label",
@@ -37,15 +38,13 @@
       "polygon",
       "script",
       "section",
-      "source",
       "span",
       "strong",
       "style",
       "svg",
       "time",
       "title",
-      "ul",
-      "video"
+      "ul"
     ],
     "classes": [
       "!mb-4",

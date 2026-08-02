@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://jevi-waugh.github.io',
+  site: 'https://jeviwaugh.com',
   output: 'static',
   trailingSlash: 'always',
   publicDir: './static',

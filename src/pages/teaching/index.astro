@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const courses = (await getCollection('teaching')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Teaching"
+  description="Jevi Waugh teaches machine learning, functional programming, theory of computing, and software engineering at UQ."
+>
+  <PageHero
+    eyebrow="Teaching at UQ"
+    title="Making hard ideas workable."
+    description="I teach across applied machine learning, programming paradigms, computational theory, and first-year software engineering."
+  />
+  <section class="section shell">
+    <div class="teaching-grid">
+      {courses.map((course) => (
+        <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
+          <span class="teaching-card__code">{course.data.code}</span>
+          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem)">{course.data.title}</h2>
+          <p>{course.data.summary}</p>
+          <span class="mono accent" style="font-size:.75rem">Course detail →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="section--tight shell">
+    <div class="cta reveal">
+      <p class="eyebrow">Teaching philosophy</p>
+      <h2>Understanding before memorisation.</h2>
+      <p>
+        Whether the topic is recursion, complexity, or gradient descent, I try to expose the
+        structure beneath the procedure. Students should leave with a way to reason, not only
+        a recipe to repeat.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

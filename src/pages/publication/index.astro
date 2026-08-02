@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const publications = await getCollection('publications');
+---
+
+<BaseLayout title="Publications" description="Publications and research manuscripts by Jevi Waugh.">
+  <PageHero
+    eyebrow="Publications"
+    title="Research in progress and in print."
+    description="Manuscripts and research contributions spanning frequency-domain representations and semantic vision."
+  />
+  <section class="section shell">
+    <div class="timeline">
+      {publications.map((publication) => (
+        <a class="timeline__item reveal" href={`/publication/${publication.id}/`}>
+          <div>
+            <div class="timeline__period">{publication.data.date.getFullYear()}</div>
+            <div class="timeline__type">{publication.data.status}</div>
+          </div>
+          <div>
+            <div class="timeline__role">{publication.data.title}</div>
+            <div class="timeline__org">{publication.data.venue}</div>
+          </div>
+          <p class="timeline__description">{publication.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pursuits } from '../data/profile';
+---
+
+<BaseLayout
+  title="Pursuits"
+  description="The interests, sports, games, and outdoor activities Jevi Waugh pursues beyond research and engineering."
+>
+  <PageHero
+    eyebrow="Beyond the work"
+    title="Pursuits that keep the system balanced."
+    description="Research is a large part of my life, but not the whole of it. These are the interests and communities that keep me curious, active, and connected."
+  />
+  <section class="section shell">
+    <div class="pursuits-grid">
+      {pursuits.map((pursuit, index) => (
+        <article class="pursuit-card reveal">
+          <span class="pursuit-card__number">0{index + 1}</span>
+          <span class="detail__aside-label">{pursuit.label}</span>
+          <h2>{pursuit.title}</h2>
+          <p>{pursuit.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section--tight shell">
+    <div class="cta reveal">
+      <p class="eyebrow">A change of frequency</p>
+      <h2>Stepping away is part of returning with better ideas.</h2>
+      <p>
+        Whether it is sport, music, the ocean, a dog walk, or a carefully planned card-game
+        turn, these pursuits give me a different kind of problem to engage with.
+      </p>
+      <a class="button" href="/gallery/">See the gallery →</a>
+    </div>
+  </section>
+</BaseLayout>

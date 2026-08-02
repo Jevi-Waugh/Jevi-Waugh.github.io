@@ -1,0 +1,16 @@
+---
+export function getStaticPaths() {
+  return [
+    {
+      params: { section: 'event', slug: 'example' },
+      props: { destination: '/talks/research-experiences-showcase/' },
+    },
+    {
+      params: { section: 'post', slug: 'srp' },
+      props: { destination: '/talks/research-experiences-showcase/' },
+    },
+  ];
+}
+
+return Astro.redirect(Astro.props.destination);
+---

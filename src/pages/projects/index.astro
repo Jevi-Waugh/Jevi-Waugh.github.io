@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Research and engineering projects by Jevi Waugh across computer vision, explainable AI, NLP, topology, and statistics."
+>
+  <PageHero
+    eyebrow="Project archive"
+    title="Experiments made concrete."
+    description="Research prototypes, developer tools, and applied analyses—each shaped by a question worth testing."
+  />
+  <section class="section shell">
+    <div class="work-grid">
+      {projects.map((entry) => <WorkCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

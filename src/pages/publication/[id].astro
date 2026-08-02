@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getMedia } from '../../data/media';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('publications');
+  const canonical = entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const legacy = entries
+    .filter((entry) => entry.id === 'frequency-domain-codes')
+    .map((entry) => ({ params: { id: 'upcoming_paper' }, props: { entry } }));
+  return [...canonical, ...legacy];
+}
+
+interface Props {
+  entry: CollectionEntry<'publications'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, summary, date, status, venue, authors, links, imageKey } = entry.data;
+const image = getMedia(imageKey);
+---
+
+<BaseLayout title={title} description={summary}>
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">{status} · {date.getFullYear()}</p>
+      <h1>{title}</h1>
+      <p class="lede">{summary}</p>
+      <div class="page-actions">
+        {links.map((link, index) => (
+          <a class:list={['button', { 'button--primary': index === 0 }]} href={link.href}>{link.label} ↗</a>
+        ))}
+      </div>
+    </div>
+  </header>
+  <article class="section shell">
+    {image && <Image class="detail__hero-image" src={image} alt="" width={1400} height={760} />}
+    <div class="detail">
+      <div class="detail__content"><Content /></div>
+      <aside class="detail__aside">
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Status</span>
+          <span>{status}</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Venue</span>
+          <span>{venue}</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Authors</span>
+          <span>{authors.join(', ')}</span>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

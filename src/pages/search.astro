@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pursuits, skillGroups } from '../data/profile';
+
+const [projects, teaching, publications, talks] = await Promise.all([
+  getCollection('projects'),
+  getCollection('teaching'),
+  getCollection('publications'),
+  getCollection('talks'),
+]);
+
+const results = [
+  {
+    title: 'Experience & technical skills',
+    summary: 'Research, teaching, engineering, leadership, languages, frameworks, and libraries.',
+    type: 'Experience',
+    tags: skillGroups.flatMap((group) => group.items),
+    href: '/experience/',
+  },
+  {
+    title: 'Pursuits',
+    summary: 'Music, games, collecting, outdoor activities, and team sports beyond technical work.',
+    type: 'Personal',
+    tags: pursuits.flatMap((pursuit) => [pursuit.title, pursuit.label]),
+    href: '/pursuits/',
+  },
+  {
+    title: 'Gallery',
+    summary: 'A visual archive of research, community, teaching, and extracurricular moments.',
+    type: 'Gallery',
+    tags: ['Photos', 'Events', 'Research', 'Community'],
+    href: '/gallery/',
+  },
+  ...projects.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: entry.data.kind,
+    tags: entry.data.tags,
+    href: `/project/${entry.id}/`,
+  })),
+  ...teaching.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: `Teaching · ${entry.data.code}`,
+    tags: entry.data.topics,
+    href: `/teaching/${entry.id}/`,
+  })),
+  ...publications.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: 'Publication',
+    tags: entry.data.tags,
+    href: `/publication/${entry.id}/`,
+  })),
+  ...talks.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: 'Talk',
+    tags: entry.data.tags,
+    href: `/talks/${entry.id}/`,
+  })),
+];
+---
+
+<BaseLayout title="Search" description="Search Jevi Waugh’s projects, publications, teaching, and talks.">
+  <PageHero
+    eyebrow="Search"
+    title="Find a signal."
+    description="Search across projects, research notes, publications, teaching, and talks."
+  />
+  <section class="section shell">
+    <div class="search-box">
+      <label class="detail__aside-label" for="site-search">Search the site</label>
+      <input
+        class="search-input"
+        id="site-search"
+        type="search"
+        placeholder="Try “Fourier”, “teaching”, or “transformers”"
+        autocomplete="off"
+        data-search-input
+      />
+      <p class="search-status" aria-live="polite" data-search-status>
+        Showing all {results.length} entries
+      </p>
+    </div>
+    <div class="search-results" data-search-results>
+      {results.map((result) => (
+        <a
+          class="search-result"
+          href={result.href}
+          data-search-item
+          data-search-text={`${result.title} ${result.summary} ${result.type} ${result.tags.join(' ')}`.toLowerCase()}
+        >
+          <span class="search-result__type">{result.type}</span>
+          <h2>{result.title}</h2>
+          <p>{result.summary}</p>
+          <span class="mono accent">Open →</span>
+        </a>
+      ))}
+    </div>
+    <p class="search-empty" hidden data-search-empty>No matching work found. Try a broader term.</p>
+  </section>
+  <script>
+    const input = document.querySelector<HTMLInputElement>('[data-search-input]');
+    const items = [...document.querySelectorAll<HTMLElement>('[data-search-item]')];
+    const status = document.querySelector<HTMLElement>('[data-search-status]');
+    const empty = document.querySelector<HTMLElement>('[data-search-empty]');
+
+    input?.addEventListener('input', () => {
+      const terms = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let visible = 0;
+
+      items.forEach((item) => {
+        const text = item.dataset.searchText ?? '';
+        const matches = terms.every((term) => text.includes(term));
+        item.hidden = !matches;
+        if (matches) visible += 1;
+      });
+
+      if (status) {
+        status.textContent = terms.length
+          ? `${visible} ${visible === 1 ? 'result' : 'results'} found`
+          : `Showing all ${items.length} entries`;
+      }
+      if (empty) empty.hidden = visible !== 0;
+    });
+  </script>
+</BaseLayout>

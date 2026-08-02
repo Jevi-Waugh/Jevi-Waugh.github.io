@@ -1,0 +1,162 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { portrait } from '../data/media';
+import { experience, metrics, profile } from '../data/profile';
+
+const projects = (await getCollection('projects'))
+  .filter((entry) => entry.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+const publication = (await getCollection('publications'))[0];
+const talk = (await getCollection('talks'))[0];
+---
+
+<BaseLayout>
+  <section class="hero shell">
+    <div class="spectral-orbit" aria-hidden="true"></div>
+    <div class="hero__topline">
+      <span class="availability">Open to research collaboration</span>
+      <span>Brisbane, AU · 27.47° S / 153.03° E</span>
+    </div>
+    <p class="eyebrow">Researcher · Engineer · Educator</p>
+    <h1>
+      <span class="hero__title-line">Building models.</span>
+      <span class="hero__title-line">Studying what’s inside.</span>
+    </h1>
+    <div class="hero__footer">
+      <p class="hero__description">{profile.description}</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#research">Explore work ↓</a>
+        <a class="button" href="/uploads/resume.pdf">Download CV ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Selected results">
+    <div class="metrics shell">
+      {metrics.map((metric) => (
+        <div class="metric reveal">
+          <strong class="metric__value">{metric.value}</strong>
+          <span class="metric__label">{metric.label}</span>
+          <span class="metric__detail">{metric.detail}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell" id="research">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Research that moves between theory and systems.</h2>
+      </div>
+      <p>
+        From frequency-domain vision to explainable code provenance, I am interested in
+        methods that expose useful structure—and in building them far enough to test.
+      </p>
+    </div>
+    <div class="work-grid">
+      {projects.map((entry) => <WorkCard entry={entry} />)}
+    </div>
+    <div style="margin-top:2rem">
+      <a class="button" href="/projects/">View all projects →</a>
+    </div>
+  </section>
+
+  <section class="section shell">
+    <div class="feature reveal">
+      <div class="feature__image">
+        <Image
+          src={portrait}
+          alt="Jevi Waugh"
+          width={700}
+          height={700}
+          loading="lazy"
+        />
+      </div>
+      <div class="feature__copy">
+        <p class="eyebrow">About</p>
+        <h2>More than a model and a metric.</h2>
+        <p>
+          I am a Machine Learning Researcher and Master of Data Science student at
+          <strong>The University of Queensland</strong>. My work focuses on computer vision,
+          deep learning, and the mathematical structure behind model behaviour.
+        </p>
+        <p>
+          Alongside research, I teach subjects ranging from machine learning to theory of
+          computing, lead industry partnerships for UQ Computing Society, and build tools
+          designed to survive outside a notebook.
+        </p>
+        <div class="page-actions">
+          <a class="button button--primary" href="/experience/">View experience</a>
+          <a class="button" href="/contact/">Start a conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">Across the stack</p>
+        <h2>Research, teaching, leadership, and execution.</h2>
+      </div>
+      <p>
+        The common thread is turning difficult ideas into something other people can use,
+        understand, or build upon.
+      </p>
+    </div>
+    <div class="timeline">
+      {experience.slice(0, 4).map((item) => (
+        <article class="timeline__item reveal">
+          <div>
+            <div class="timeline__period">{item.period}</div>
+            <div class="timeline__type">{item.type}</div>
+          </div>
+          <div>
+            <div class="timeline__role">{item.role}</div>
+            <div class="timeline__org">{item.organisation}</div>
+          </div>
+          <p class="timeline__description">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell" id="publication">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">Publication</p>
+        <h2>{publication.data.title}</h2>
+        <p class="lede">{publication.data.summary}</p>
+        <p class="mono muted">{publication.data.status} · {publication.data.venue}</p>
+        <a class="button" href={`/publication/${publication.id}/`}>Read publication note →</a>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Latest talk</p>
+        <h2>{talk.data.event}</h2>
+        <p class="lede">{talk.data.summary}</p>
+        <p class="mono muted">{talk.data.date.toLocaleDateString('en-AU', { dateStyle: 'long' })}</p>
+        <a class="button" href={`/talks/${talk.id}/`}>Watch the talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell">
+    <div class="cta reveal">
+      <p class="eyebrow">Let’s work together</p>
+      <h2>Have an unusual machine-learning problem?</h2>
+      <p>
+        I am interested in research collaborations, technical projects, and conversations
+        about frequency-domain vision, model behaviour, or tools that connect research with practice.
+      </p>
+      <div class="page-actions">
+        <a class="button button--primary" href="/contact/">Contact me</a>
+        <a class="button" href={profile.linkedin}>Connect on LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

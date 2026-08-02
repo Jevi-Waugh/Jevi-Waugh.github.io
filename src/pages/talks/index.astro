@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const talks = (await getCollection('talks')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Talks" description="Research talks and presentations by Jevi Waugh.">
+  <PageHero
+    eyebrow="Talks"
+    title="Explaining the work is part of the work."
+    description="Presentations on frequency-domain vision, image segmentation, and the process behind research results."
+  />
+  <section class="section shell">
+    <div class="timeline">
+      {talks.map((talk) => (
+        <a class="timeline__item reveal" href={`/talks/${talk.id}/`}>
+          <div>
+            <div class="timeline__period">{talk.data.date.toLocaleDateString('en-AU')}</div>
+            <div class="timeline__type">Talk</div>
+          </div>
+          <div>
+            <div class="timeline__role">{talk.data.title}</div>
+            <div class="timeline__org">{talk.data.event}</div>
+          </div>
+          <p class="timeline__description">{talk.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

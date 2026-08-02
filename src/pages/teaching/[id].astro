@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getMedia } from '../../data/media';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('teaching');
+  const canonical = entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+  const legacyAliases: Record<string, string> = {
+    'theory-of-computing': 'comp2048',
+    'functional-programming': 'comp3400',
+    'software-engineering': 'csse1001',
+  };
+  const legacy = entries
+    .filter((entry) => legacyAliases[entry.id])
+    .map((entry) => ({
+      params: { id: legacyAliases[entry.id] },
+      props: { entry },
+    }));
+  return [...canonical, ...legacy];
+}
+
+interface Props {
+  entry: CollectionEntry<'teaching'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, summary, code, topics, imageKey } = entry.data;
+const image = getMedia(imageKey);
+---
+
+<BaseLayout title={`${code}: ${title}`} description={summary}>
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">The University of Queensland · {code}</p>
+      <h1>{title}</h1>
+      <p class="lede">{summary}</p>
+    </div>
+  </header>
+  <article class="section shell">
+    {image && <Image class="detail__hero-image" src={image} alt="" width={1400} height={700} />}
+    <div class="detail">
+      <div class="detail__content"><Content /></div>
+      <aside class="detail__aside">
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Course</span>
+          <span>{code}</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Topics</span>
+          <ul class="tag-list">
+            {topics.map((topic) => <li class="tag">{topic}</li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

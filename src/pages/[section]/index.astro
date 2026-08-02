@@ -1,0 +1,10 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { section: 'event' } },
+    { params: { section: 'post' } },
+  ];
+}
+
+return Astro.redirect('/talks/');
+---

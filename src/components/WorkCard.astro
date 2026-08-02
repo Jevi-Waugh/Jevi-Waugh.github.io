@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { getMedia } from '../data/media';
+
+type Entry = CollectionEntry<'projects'>;
+
+interface Props {
+  entry: Entry;
+}
+
+const { entry } = Astro.props;
+const { title, summary, date, kind, metric, imageKey, tags } = entry.data;
+const image = getMedia(imageKey);
+---
+
+<article class="work-card reveal">
+  <a href={`/project/${entry.id}/`} aria-label={`Read ${title}`}>
+    <div class="work-card__media">
+      {image ? (
+        <Image src={image} alt="" width={900} height={560} loading="lazy" />
+      ) : (
+        <div class="work-card__placeholder" aria-hidden="true">[{kind}]</div>
+      )}
+    </div>
+    <div class="work-card__body">
+      <div class="work-card__meta">
+        <span>{kind}</span>
+        <time datetime={date.toISOString()}>{date.getFullYear()}</time>
+      </div>
+      <h3>{title}</h3>
+      <p class="work-card__summary">{summary}</p>
+      {metric && <span class="work-card__metric">{metric}</span>}
+      {!metric && (
+        <ul class="tag-list" aria-label="Topics">
+          {tags.slice(0, 3).map((tag) => <li class="tag">{tag}</li>)}
+        </ul>
+      )}
+      <span class="work-card__arrow" aria-hidden="true">↗</span>
+    </div>
+  </a>
+</article>

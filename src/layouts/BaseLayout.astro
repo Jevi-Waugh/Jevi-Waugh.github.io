@@ -1,0 +1,126 @@
+---
+import '../styles/global.css';
+import { navigation, profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = profile.title,
+  description = profile.description,
+} = Astro.props;
+const pageTitle = title === profile.title ? `${profile.name} — ${title}` : `${title} — ${profile.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  url: Astro.site,
+  jobTitle: 'Machine Learning Researcher',
+  affiliation: {
+    '@type': 'Organization',
+    name: 'The University of Queensland',
+  },
+  sameAs: [profile.github, profile.linkedin, profile.uq],
+  knowsAbout: [
+    'Machine Learning',
+    'Computer Vision',
+    'Fourier Analysis',
+    'Deep Learning',
+    'Natural Language Processing',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#09090c" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%2309090c%22/><text x=%2250%22 y=%2267%22 font-size=%2252%22 text-anchor=%22middle%22 fill=%22%23d9ff5b%22>JW</text></svg>" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="header" data-header>
+      <div class="site-notice">This website is currently in development.</div>
+      <nav class="nav shell" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="Jevi Waugh home">
+          <span class="brand__mark">J</span>
+          <span>Jevi Waugh</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle>
+          <span aria-hidden="true">☰</span>
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menu</span>
+        </button>
+        <div class="nav__links" id="nav-links" data-nav-links>
+          {navigation.map((item) => (
+            <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+          ))}
+          <a class="nav__contact" href="/contact/" aria-current={currentPath === '/contact/' ? 'page' : undefined}>Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner shell">
+        <span>© {new Date().getFullYear()} Jevi Waugh. Built with curiosity and Astro.</span>
+        <div class="footer__links">
+          <a href={profile.github} rel="me">GitHub</a>
+          <a href={profile.linkedin} rel="me">LinkedIn</a>
+          <a href="/uploads/resume.pdf">CV</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const header = document.querySelector('[data-header]');
+      const menuButton = document.querySelector('[data-menu-toggle]');
+      const menu = document.querySelector('[data-nav-links]');
+
+      const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+
+      menuButton?.addEventListener('click', () => {
+        const open = menu?.classList.toggle('is-open') ?? false;
+        menuButton.setAttribute('aria-expanded', String(open));
+      });
+
+      menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          menuButton?.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        }),
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    </script>
+  </body>
+</html>

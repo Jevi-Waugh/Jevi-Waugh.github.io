@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { profile } from '../data/profile';
+
+const emailContacts = [
+  {
+    label: 'Research',
+    email: profile.emails.research,
+    description: 'For research questions, academic collaborations, and work in machine learning or computer vision.',
+  },
+  {
+    label: 'Students',
+    email: profile.emails.student,
+    description: 'If you are a student contacting me about teaching, coursework, or university support, use this address.',
+  },
+  {
+    label: 'Fintech',
+    email: profile.emails.fintech,
+    description: 'For fintech questions and enquiries connected with my work at Apex Fincap.',
+  },
+];
+---
+
+<BaseLayout title="Contact" description="Contact Jevi Waugh about research, engineering, teaching, or collaboration.">
+  <PageHero
+    eyebrow="Contact"
+    title="Let’s start a useful conversation."
+    description="I’m open to research collaborations, technical projects, and conversations about machine learning, model behaviour, and frequency-domain vision."
+  />
+  <section class="section shell">
+    <div class="contact-grid">
+      {emailContacts.map((contact) => (
+        <div class="contact-card reveal">
+          <span class="detail__aside-label">{contact.label}</span>
+          <h2>{contact.email}</h2>
+          <p>{contact.description}</p>
+          <div class="page-actions">
+            <button class="button button--primary" type="button" data-copy-email data-email={contact.email}>
+              Copy email
+            </button>
+            <a class="button" href={`mailto:${contact.email}`}>Open email app ↗</a>
+          </div>
+          <p class="copy-status mono" aria-live="polite" data-copy-status></p>
+        </div>
+      ))}
+      <div class="contact-card reveal">
+        <span class="detail__aside-label">Elsewhere</span>
+        <h2>Connect online.</h2>
+        <p>Follow current work, repositories, and professional updates through these profiles.</p>
+        <div class="page-actions">
+          <a class="button" href={profile.github}>GitHub ↗</a>
+          <a class="button" href={profile.linkedin}>LinkedIn ↗</a>
+          <a class="button" href={profile.wandb}>Weights & Biases ↗</a>
+          <a class="button" href={profile.uq}>UQ profile ↗</a>
+          <a class="button" href={profile.uqcs}>UQ Computing Society ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const copyButtons = document.querySelectorAll<HTMLButtonElement>('[data-copy-email]');
+
+    copyButtons.forEach((copyButton) => {
+      copyButton.addEventListener('click', async () => {
+        const email = copyButton.dataset.email ?? '';
+        const copyStatus = copyButton.closest('.contact-card')?.querySelector<HTMLElement>('[data-copy-status]');
+        let copied = true;
+        try {
+          await navigator.clipboard.writeText(email);
+        } catch {
+          copied = false;
+          window.prompt('Copy this email address:', email);
+        }
+        copyButton.textContent = copied ? 'Copied' : 'Copy manually';
+        if (copyStatus) {
+          copyStatus.textContent = copied
+            ? 'Email address copied to your clipboard.'
+            : 'Your browser blocked clipboard access; copy the address from the dialog.';
+        }
+        window.setTimeout(() => {
+          copyButton.textContent = 'Copy email';
+        }, 2200);
+      });
+    });
+  </script>
+</BaseLayout>

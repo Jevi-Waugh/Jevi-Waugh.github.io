@@ -1,14 +1,9 @@
-# Hugo
-/public/
-/resources/
-/docs/
-/go
-# Templates for later
-# /content/event/*
-
-# Other
-.hugo_build.lock
-hugo_stats.json
+# System files
 .DS_Store
 Thumbs.db
+
+# Astro
+/node_modules/
+/dist/
+/.astro/
 

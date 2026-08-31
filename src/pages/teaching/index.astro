@@ -4,23 +4,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 
 const courses = (await getCollection('teaching')).sort((a, b) => a.data.order - b.data.order);
+const isCurrent = (course: (typeof courses)[number]) => course.data.period?.includes('Present');
+const current = courses.filter(isCurrent);
+const past = courses.filter((course) => !isCurrent(course));
 ---
 
 <BaseLayout
   title="Teaching"
-  description="Jevi Waugh teaches machine learning, functional programming, theory of computing, and software engineering at UQ."
+  description="Jevi Waugh teaches capstone design, pattern recognition, and software engineering at UQ, and has taught machine learning, functional programming, and theory of computing."
 >
   <PageHero
     eyebrow="Teaching at UQ"
     title="Making hard ideas workable."
-    description="I teach across applied machine learning, programming paradigms, computational theory, and first-year software engineering."
+    description="I teach across capstone software delivery, deep learning and pattern recognition, and first-year software engineering, and have taught machine learning, programming paradigms, and computational theory."
   />
   <section class="section shell">
+    <p class="eyebrow">Currently teaching</p>
     <div class="teaching-grid">
-      {courses.map((course) => (
+      {current.map((course) => (
         <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
           <span class="teaching-card__code">{course.data.code}</span>
           <h2 style="font-size:clamp(1.8rem,3vw,2.8rem)">{course.data.title}</h2>
+          {course.data.period && <p class="mono muted" style="font-size:.75rem">{course.data.period}</p>}
+          <p>{course.data.summary}</p>
+          <span class="mono accent" style="font-size:.75rem">Course detail →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="section--tight shell">
+    <p class="eyebrow">Previously taught</p>
+    <div class="teaching-grid">
+      {past.map((course) => (
+        <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
+          <span class="teaching-card__code">{course.data.code}</span>
+          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem)">{course.data.title}</h2>
+          {course.data.period && <p class="mono muted" style="font-size:.75rem">{course.data.period}</p>}
           <p>{course.data.summary}</p>
           <span class="mono accent" style="font-size:.75rem">Course detail →</span>
         </a>

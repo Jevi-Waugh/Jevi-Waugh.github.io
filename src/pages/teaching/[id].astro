@@ -30,7 +30,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, summary, code, topics, imageKey } = entry.data;
+const { title, summary, code, period, topics, imageKey } = entry.data;
 const image = getMedia(imageKey);
 ---
 
@@ -51,6 +51,12 @@ const image = getMedia(imageKey);
           <span class="detail__aside-label">Course</span>
           <span>{code}</span>
         </div>
+        {period && (
+          <div class="detail__aside-block">
+            <span class="detail__aside-label">Period</span>
+            <span>{period}</span>
+          </div>
+        )}
         <div class="detail__aside-block">
           <span class="detail__aside-label">Topics</span>
           <ul class="tag-list">

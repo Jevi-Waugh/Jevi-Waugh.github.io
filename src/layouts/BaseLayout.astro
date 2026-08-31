@@ -52,6 +52,18 @@ const schema = {
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%2309090c%22/><text x=%2250%22 y=%2267%22 font-size=%2252%22 text-anchor=%22middle%22 fill=%22%23d9ff5b%22>JW</text></svg>" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline>
+      (() => {
+        let theme = 'dark';
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') theme = stored;
+        } catch (error) {
+          /* storage unavailable — fall back to the dark default */
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <title>{pageTitle}</title>
   </head>
   <body>
@@ -62,10 +74,21 @@ const schema = {
           <span class="brand__mark">J</span>
           <span>Jevi Waugh</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle>
-          <span aria-hidden="true">☰</span>
-          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menu</span>
-        </button>
+        <div class="nav__actions">
+          <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" data-theme-toggle>
+            <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7" />
+            </svg>
+            <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.3 14.2A8.4 8.4 0 1 1 9.8 3.7a6.9 6.9 0 0 0 10.5 10.5Z" />
+            </svg>
+          </button>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle>
+            <span aria-hidden="true">☰</span>
+            <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menu</span>
+          </button>
+        </div>
         <div class="nav__links" id="nav-links" data-nav-links>
           {navigation.map((item) => (
             <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
@@ -109,6 +132,31 @@ const schema = {
           menu.classList.remove('is-open');
           menuButton?.setAttribute('aria-expanded', 'false');
         });
+      });
+
+      const themeButton = document.querySelector('[data-theme-toggle]');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+
+      const applyTheme = (theme: string) => {
+        document.documentElement.dataset.theme = theme;
+        themeColor?.setAttribute('content', theme === 'light' ? '#fbfaf7' : '#09090c');
+        themeButton?.setAttribute('aria-pressed', String(theme === 'light'));
+        themeButton?.setAttribute(
+          'aria-label',
+          theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode',
+        );
+      };
+
+      applyTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+
+      themeButton?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch (error) {
+          /* preference simply will not persist */
+        }
       });
 
       const observer = new IntersectionObserver(

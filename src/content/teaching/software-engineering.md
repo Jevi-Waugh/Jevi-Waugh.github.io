@@ -3,8 +3,9 @@ title: "Introduction to Software Engineering"
 code: "CSSE1001"
 summary: "Supporting first-year students as they learn programming fundamentals, debugging, object-oriented design, and engineering practice."
 date: 2025-07-28
+period: "Jul 2025 — Present"
 featured: true
-order: 4
+order: 3
 tags: ["Academic", "Software Engineering"]
 topics: ["Python", "Debugging", "Object-Oriented Design", "Testing"]
 imageKey: "software-engineering"

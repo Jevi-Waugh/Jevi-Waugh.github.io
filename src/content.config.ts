@@ -30,6 +30,7 @@ const teaching = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/teaching' }),
   schema: workSchema.extend({
     code: z.string(),
+    period: z.string().optional(),
     topics: z.array(z.string()).default([]),
   }),
 });

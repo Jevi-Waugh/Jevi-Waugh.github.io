@@ -49,14 +49,24 @@ export const experience = [
     ],
   },
   {
+    role: 'AI Engineer (Part-time)',
+    organisation: 'Apex Fincap',
+    period: 'Jul 2026 — Present',
+    type: 'Engineering',
+    description:
+      'Building AI-driven systems for a financial trading platform, spanning data pipelines, model integration, and production reliability. Project specifics are under NDA.',
+    highlights: [],
+  },
+  {
     role: 'Casual Academic',
     organisation: 'The University of Queensland',
     period: 'Jul 2025 — Present',
     type: 'Teaching',
     description:
-      'Teaching across machine learning, functional programming, theory of computing, and introductory software engineering.',
+      'Currently supervising capstone teams (DECO3801) and teaching pattern recognition and deep learning (COMP3710) alongside introductory software engineering (CSSE1001). Previously taught machine learning, functional and logic programming, and theory of computing.',
     highlights: [
       'Delivering classes and guiding students through programming and mathematical concepts.',
+      'Supervising capstone teams through scoping, technical decisions, and delivery.',
       'Marking assessments and providing practical, constructive feedback.',
     ],
   },

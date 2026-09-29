@@ -1,9 +1,9 @@
 ---
-title: "Design Computing Studio 3 — Build"
+title: "Design Computing Studio 3: Build"
 code: "DECO3801"
 summary: "Supervising capstone teams as they take an ambitious concept through to a working, delivered product."
 date: 2026-07-20
-period: "Jul 2026 — Present"
+period: "Jul 2026 - Present"
 featured: true
 order: 1
 tags: ["Academic", "Capstone", "Software Engineering"]

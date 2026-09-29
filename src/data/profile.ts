@@ -34,8 +34,8 @@ export const secondaryNavigation = [
 export const metrics = [
   { value: '+1.77%', label: 'validation performance', detail: 'against a U-Net baseline' },
   { value: '−13.8%', label: 'GPU memory', detail: 'with the Fourier Shuffle model' },
-  { value: '$30K+', label: 'sponsorship secured', detail: 'for UQ Computing Society' },
-  { value: '1.5K+', label: 'extension downloads', detail: 'for TraceForest' },
+  { value: '$35K+', label: 'sponsorship secured', detail: 'for UQ Computing Society' },
+  { value: '3K+', label: 'extension downloads', detail: 'for TraceForest' },
 ];
 
 export type ExperienceItem = {
@@ -54,12 +54,12 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Machine Learning Research Assistant',
     organisation: 'The University of Queensland',
-    period: 'Mar 2026 — Present',
+    period: 'Mar 2026 - Present',
     type: 'Research',
     description:
       'Deriving novel frequency-domain algorithms for frequency-based autoencoders in image segmentation, and evaluating autoencoder architectures for compatibility with them.',
     highlights: [
-      'Derived 3 novel algorithms — <strong>Kaleidoscope Fourier</strong>, <strong>Generalised Kaleidoscope Fourier</strong>, and <strong>Fourier Unshuffle</strong> — for use in frequency-based autoencoders for image segmentation tasks.',
+      'Derived 3 novel algorithms (<strong>Kaleidoscope Fourier</strong>, <strong>Generalised Kaleidoscope Fourier</strong>, and <strong>Fourier Unshuffle</strong>) for use in frequency-based autoencoders for image segmentation tasks.',
       'Developed and evaluated multiple autoencoder architectures to assess compatibility with novel frequency-domain algorithms, comparing model behaviour and performance across architectural variants.',
       'Contributing to research targeting manuscript submission in 2027, focusing on frequency-domain methods for computer vision.',
     ],
@@ -67,7 +67,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'AI Engineer (Part-time)',
     organisation: 'Apex Fincap',
-    period: 'Jul 2026 — Present',
+    period: 'Jul 2026 - Present',
     type: 'Engineering',
     description:
       'Building AI-driven systems for a financial trading platform, spanning data pipelines, model integration, and production reliability. Project specifics are under NDA.',
@@ -76,7 +76,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Casual Academic',
     organisation: 'The University of Queensland',
-    period: 'Jul 2025 — Present',
+    period: 'Jul 2025 - Present',
     type: 'Teaching',
     description:
       'Currently supervising capstone teams (DECO3801) and teaching pattern recognition and deep learning (COMP3710) alongside introductory software engineering (CSSE1001). Previously taught machine learning, functional and logic programming, and theory of computing.',
@@ -89,7 +89,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Industry Officer',
     organisation: 'UQ Computing Society',
-    period: 'Nov 2025 — Present',
+    period: 'Nov 2025 - Present',
     type: 'Leadership',
     href: '/industry-officer/',
     description:
@@ -102,7 +102,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Summer Research Scholar',
     organisation: 'The University of Queensland',
-    period: 'Jan 2026 — Mar 2026',
+    period: 'Jan 2026 - Mar 2026',
     type: 'Research',
     description:
       'Designed a PsychoNet-based decoder and derived Fourier Shuffle for frequency–spatial upsampling in medical image segmentation.',
@@ -114,7 +114,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'AI Integration Engineer',
     organisation: 'Apex Fincap',
-    period: 'Nov 2024 — Feb 2025',
+    period: 'Nov 2024 - Feb 2025',
     type: 'Engineering',
     description:
       'Built AI-assisted systems that summarised financial data and helped brokers complete reports more efficiently and accurately.',
@@ -122,32 +122,51 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export const education = [
+export type EducationItem = {
+  degree: string;
+  institution: string;
+  period: string;
+  detail: string;
+  /** Set only when a place is not yet confirmed, so the page can say so. */
+  status?: string;
+};
+
+export const education: EducationItem[] = [
+  {
+    degree: 'Master of Science (Informatics)',
+    institution: 'Technical University of Munich',
+    period: 'From 2027 (intended)',
+    detail:
+      'Applying to begin in 2027. A place has not been offered yet, so this is an intended next step rather than a confirmed one.',
+    status: 'Admission pending',
+  },
   {
     degree: 'Master of Data Science',
     institution: 'The University of Queensland',
-    period: '2026 — Present',
-    detail: 'Advanced statistics, numerical linear algebra, and deep learning.',
+    period: '2026 - Present',
+    detail: 'Advanced statistics, numerical linear algebra, and deep learning. \ \ GPA: 6.5/7',
   },
   {
     degree: 'Bachelor of Computer Science',
     institution: 'The University of Queensland',
-    period: '2024 — 2025',
+    period: '2024 - 2025',
     detail: 'Machine Learning major · Semester 2 GPA: 6.5',
   },
 ];
 
-export const capabilities = [
-  'PyTorch',
+/* Research areas, not tooling: the languages and libraries live in skillGroups
+   below, and listing them twice on the same page said nothing new. */
+export const focusAreas = [
+  'Deep Learning',
   'Computer Vision',
-  'Fourier Analysis',
-  'Transformers',
-  'Scikit-learn',
-  'Python',
-  'Haskell',
-  'C',
-  'Java',
-  'SQL',
+  'Vision Transformers',
+  'Fourier & Frequency-Domain Methods',
+  'Semantic Segmentation',
+  'Mechanistic Interpretability',
+  'Explainable AI',
+  'Topological Data Analysis',
+  'Multivariate Statistics',
+  'Natural Language Processing',
 ];
 
 export const skillGroups = [
@@ -156,6 +175,7 @@ export const skillGroups = [
     items: [
       'Python',
       'C (ANSI C)',
+      'C++',
       'Haskell',
       'Java',
       'Mojo (Familiar)',

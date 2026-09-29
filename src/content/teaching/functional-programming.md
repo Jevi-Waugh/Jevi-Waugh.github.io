@@ -3,7 +3,7 @@ title: "Functional and Logic Programming"
 code: "COMP3400"
 summary: "Helping students move from imperative programming to recursion, induction, functional abstractions, and logic."
 date: 2026-02-28
-period: "Feb 2026 — Jul 2026"
+period: "Feb 2026 - Jul 2026"
 featured: false
 order: 5
 tags: ["Academic", "Functional Programming"]

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { navigation, profile, secondaryNavigation } from '../data/profile';
 
 interface Props {
@@ -11,7 +12,7 @@ const {
   title = profile.title,
   description = profile.description,
 } = Astro.props;
-const pageTitle = title === profile.title ? `${profile.name} — ${title}` : `${title} — ${profile.name}`;
+const pageTitle = title === profile.title ? `${profile.name} · ${title}` : `${title} · ${profile.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const currentPath = Astro.url.pathname;
 const schema = {
@@ -59,12 +60,13 @@ const schema = {
           const stored = localStorage.getItem('theme');
           if (stored === 'light' || stored === 'dark') theme = stored;
         } catch (error) {
-          /* storage unavailable — fall back to the light default */
+          /* storage unavailable, so fall back to the light default */
         }
         document.documentElement.dataset.theme = theme;
       })();
     </script>
     <title>{pageTitle}</title>
+    <ClientRouter />
   </head>
   <body>
     <header class="header" data-header>
@@ -118,32 +120,22 @@ const schema = {
     </footer>
 
     <script>
-      const header = document.querySelector('[data-header]');
-      const menuButton = document.querySelector('[data-menu-toggle]');
-      const menu = document.querySelector('[data-nav-links]');
-
-      const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
-      updateHeader();
-      window.addEventListener('scroll', updateHeader, { passive: true });
-
-      menuButton?.addEventListener('click', () => {
-        const open = menu?.classList.toggle('is-open') ?? false;
-        menuButton.setAttribute('aria-expanded', String(open));
-      });
-
-      menu?.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          menu.classList.remove('is-open');
-          menuButton?.setAttribute('aria-expanded', 'false');
-        });
-      });
-
-      const themeButton = document.querySelector('[data-theme-toggle]');
-      const themeColor = document.querySelector('meta[name="theme-color"]');
+      const readTheme = () => {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') return stored;
+        } catch (error) {
+          /* storage unavailable, so fall back to the light default */
+        }
+        return 'light';
+      };
 
       const applyTheme = (theme: string) => {
         document.documentElement.dataset.theme = theme;
-        themeColor?.setAttribute('content', theme === 'dark' ? '#0f0f11' : '#ffffff');
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#0f0f11' : '#ffffff');
+        const themeButton = document.querySelector('[data-theme-toggle]');
         themeButton?.setAttribute('aria-pressed', String(theme === 'dark'));
         themeButton?.setAttribute(
           'aria-label',
@@ -151,17 +143,50 @@ const schema = {
         );
       };
 
-      applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+      /* Registered once and re-queried per scroll, rather than closing over a
+         header that the router replaces on every navigation. */
+      const updateHeader = () =>
+        document.querySelector('[data-header]')?.classList.toggle('is-scrolled', window.scrollY > 12);
+      window.addEventListener('scroll', updateHeader, { passive: true });
 
-      themeButton?.addEventListener('click', () => {
-        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        try {
-          localStorage.setItem('theme', next);
-        } catch (error) {
-          /* preference simply will not persist */
-        }
-      });
+      /* The router swaps the body, so listeners are bound fresh each time.
+         astro:page-load also fires on the initial load. */
+      const bind = () => {
+        const menuButton = document.querySelector('[data-menu-toggle]');
+        const menu = document.querySelector('[data-nav-links]');
+
+        updateHeader();
+
+        menuButton?.addEventListener('click', () => {
+          const open = menu?.classList.toggle('is-open') ?? false;
+          menuButton.setAttribute('aria-expanded', String(open));
+        });
+
+        menu?.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            menu.classList.remove('is-open');
+            menuButton?.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+          const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+          try {
+            localStorage.setItem('theme', next);
+          } catch (error) {
+            /* preference simply will not persist */
+          }
+        });
+
+        applyTheme(readTheme());
+      };
+
+      document.addEventListener('astro:page-load', bind);
+
+      /* Re-asserted before the new page paints: the incoming document carries
+         no data-theme, so without this a transition flashes back to light. */
+      document.addEventListener('astro:after-swap', () => applyTheme(readTheme()));
     </script>
   </body>
 </html>

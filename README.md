@@ -1,4 +1,4 @@
-# Jevi Waugh — Personal Website
+# Jevi Waugh: Personal Website
 
 Research and engineering portfolio built with [Astro](https://astro.build/).
 
@@ -24,10 +24,10 @@ The development server runs at `http://localhost:4321`.
 
 Structured Markdown content lives in `src/content/`:
 
-- `projects/` — research, engineering, and analysis case studies
-- `publications/` — manuscripts and publication notes
-- `talks/` — presentations and recordings
-- `teaching/` — UQ course pages
+- `projects/`: research, engineering, and analysis case studies
+- `publications/`: manuscripts and publication notes
+- `talks/`: presentations and recordings
+- `teaching/`: UQ course pages
 
 Profile, experience, metrics, and navigation data live in `src/data/profile.ts`.
 

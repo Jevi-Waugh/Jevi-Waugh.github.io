@@ -26,7 +26,7 @@ const groups = [
       <p class="eyebrow">{group.label}</p>
       <div class="teaching-grid">
         {group.courses.map((course) => (
-          <a class="teaching-card" href={`/teaching/${course.id}/`}>
+          <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
             <div class="teaching-card__meta">
               <span class="teaching-card__code">{course.data.code}</span>
               {course.data.period && (

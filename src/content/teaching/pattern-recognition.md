@@ -3,7 +3,7 @@ title: "Pattern Recognition and Analysis"
 code: "COMP3710"
 summary: "Deep learning and pattern recognition in practice, from tensor fundamentals to generative models on real imaging data."
 date: 2026-07-20
-period: "Jul 2026 — Present"
+period: "Jul 2026 - Present"
 featured: true
 order: 2
 tags: ["Academic", "Machine Learning", "Deep Learning"]

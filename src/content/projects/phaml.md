@@ -14,7 +14,7 @@ links:
 
 ## Adding global shape to conventional features
 
-Conventional machine-learning models often rely on statistical features while overlooking the global shape of complex datasets. PHAML—Persistent Homology-Augmented Machine Learning—explores how topological descriptors can complement those inputs.
+Conventional machine-learning models often rely on statistical features while overlooking the global shape of complex datasets. PHAML (Persistent Homology-Augmented Machine Learning) explores how topological descriptors can complement those inputs.
 
 The pipeline builds Vietoris–Rips filtrations, computes persistent homology, and converts persistence landscapes and barcodes into quantitative feature vectors. Those vectors are combined with conventional inputs for supervised models such as support-vector machines and logistic regression.
 

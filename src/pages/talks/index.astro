@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import { getMedia } from '../../data/media';
 
 const talks = (await getCollection('talks')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
@@ -13,9 +15,14 @@ const talks = (await getCollection('talks')).sort((a, b) => b.data.date.valueOf(
     description="Presentations on frequency-domain vision, image segmentation, and the process behind research results."
   />
   <section class="section shell">
-    <div class="timeline">
-      {talks.map((talk) => (
+    <div class="timeline timeline--media">
+      {talks.map((talk) => {
+        const cover = getMedia(talk.data.imageKey);
+        return (
         <a class="timeline__item reveal" href={`/talks/${talk.id}/`}>
+          <div class="timeline__media">
+            {cover && <Image src={cover} alt="" width={440} height={280} loading="lazy" />}
+          </div>
           <div>
             <div class="timeline__period">{talk.data.date.toLocaleDateString('en-AU')}</div>
             <div class="timeline__type">Talk</div>
@@ -26,7 +33,8 @@ const talks = (await getCollection('talks')).sort((a, b) => b.data.date.valueOf(
           </div>
           <p class="timeline__description">{talk.data.summary}</p>
         </a>
-      ))}
+        );
+      })}
     </div>
   </section>
 </BaseLayout>

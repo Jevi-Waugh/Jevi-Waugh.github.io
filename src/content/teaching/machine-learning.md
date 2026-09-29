@@ -3,7 +3,7 @@ title: "Machine Learning"
 code: "COMP4702 / COMP7703"
 summary: "Mathematical foundations and practical implementation across supervised, unsupervised, and deep learning."
 date: 2026-02-28
-period: "Feb 2026 — Jul 2026"
+period: "Feb 2026 - Jul 2026"
 featured: false
 order: 4
 tags: ["Academic", "Machine Learning"]

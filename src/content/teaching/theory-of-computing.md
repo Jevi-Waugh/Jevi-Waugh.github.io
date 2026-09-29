@@ -3,7 +3,7 @@ title: "Theory of Computing"
 code: "COMP2048"
 summary: "Rigorous reasoning about automata, formal languages, computability, complexity, and alternative models of computation."
 date: 2026-02-28
-period: "Feb 2026 — Jul 2026"
+period: "Feb 2026 - Jul 2026"
 featured: false
 order: 6
 tags: ["Academic", "Theory"]

@@ -1,5 +1,5 @@
 ---
-title: "BlackBox Labs — TraceForest"
+title: "BlackBox Labs: TraceForest"
 summary: "An explainable detector for AI-generated code, combining stylometric AST features, random forests, SHAP, and developer tooling."
 date: 2025-12-01
 featured: true

@@ -6,6 +6,7 @@ featured: true
 order: 3
 kind: "Research Project"
 tags: ["Vision Transformers", "Mechanistic Analysis", "Deep Learning"]
+imageKey: "vit-attention"
 links: []
 ---
 

@@ -633,7 +633,7 @@ h3 {
   align-items: start;
 }
 
-/* Landscape photograph — kept at its native 4:3 so nothing is cropped away. */
+/* Landscape photograph: kept at its native 4:3 so nothing is cropped away. */
 .feature__image img {
   width: 100%;
   border: 1px solid var(--line);
@@ -668,11 +668,92 @@ h3 {
   gap: 1.75rem;
 }
 
+/* Railed variant: a continuous line down the left with a node per role, so the
+   sequence reads as one progression rather than a stack of separate entries.
+   Only the rail is decorative; the dates still carry the real information. */
+.timeline--railed {
+  position: relative;
+  padding-left: 1.65rem;
+}
+
+.timeline--railed::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  width: 1px;
+  background: var(--line-strong);
+  content: '';
+}
+
+/* Fades the rail out past the last role rather than stopping it dead. */
+.timeline--railed::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 7px;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  content: '';
+}
+
+.timeline--railed .timeline__item {
+  position: relative;
+}
+
+.timeline--railed .timeline__item::before {
+  position: absolute;
+  /* Sits on the rail, aligned to the cap height of the period line. */
+  top: calc(1.5rem + 0.42rem);
+  left: calc(-1.65rem + 1px);
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  content: '';
+}
+
+/* Current roles get a filled node; past ones stay hollow. No legend needed:
+   the periods beside them already read "Present". */
+.timeline--railed .timeline__item--current::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
 .timeline__period,
 .timeline__type {
   color: var(--dim);
   font-family: 'DM Mono', monospace;
   font-size: 0.74rem;
+}
+
+/* Media variant: entries carry a cover image, so the row gains a leading
+   column for it. 200px matches the media column the project rows use. */
+.timeline--media .timeline__item {
+  grid-template-columns: 200px 0.5fr 1fr 1.6fr;
+}
+
+/* align-self is load-bearing: .timeline__item sets no align-items, so a grid
+   item stretches to the full row height and the box turns into a tall column
+   with the image stranded at the top. The ratio belongs on the box, not the
+   image, so the border follows the crop. */
+.timeline__media {
+  align-self: start;
+  aspect-ratio: 11 / 7;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.timeline__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .timeline__role {
@@ -968,9 +1049,32 @@ h3 {
 }
 
 .education-card__period {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--dim);
   font-family: 'DM Mono', monospace;
   font-size: 0.72rem;
+}
+
+/* Marks a place that has not been offered yet, so the entry cannot be read as
+   a confirmed one. */
+.education-card__status {
+  padding: 0.12rem 0.45rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.education-card--pending h3,
+.education-card--pending .accent {
+  color: var(--muted);
+}
+
+.page-actions--under-hero {
+  margin-top: -0.75rem;
 }
 
 .capabilities {
@@ -1239,11 +1343,70 @@ h3 {
   font-size: 0.78rem;
 }
 
-/* Content is visible immediately; the scroll-reveal has been retired. */
+/* ---------------------------------------------------------------------------
+   Entrance and page transitions
+   --------------------------------------------------------------------------- */
+
+/* Cards and rows fade up as the page settles, one after another, so a list
+   reads as arriving in order rather than landing all at once. Deliberately
+   pure CSS: the old scroll-reveal depended on scripting, which is why it was
+   retired. An animation that ends at opacity 1 can never strand content. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .reveal,
 .reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  animation: reveal-in 520ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Each successive sibling starts a beat later. Capped past the eighth so a
+   long list never leaves the reader waiting on the last item. */
+.reveal:nth-child(1) { animation-delay: 0ms; }
+.reveal:nth-child(2) { animation-delay: 70ms; }
+.reveal:nth-child(3) { animation-delay: 140ms; }
+.reveal:nth-child(4) { animation-delay: 210ms; }
+.reveal:nth-child(5) { animation-delay: 280ms; }
+.reveal:nth-child(6) { animation-delay: 350ms; }
+.reveal:nth-child(7) { animation-delay: 420ms; }
+.reveal:nth-child(n + 8) { animation-delay: 490ms; }
+
+/* Cross-document transitions, driven by the ClientRouter in BaseLayout. The
+   outgoing page lifts away slightly as the incoming one rises into place. */
+::view-transition-old(root) {
+  animation: page-out 180ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: page-in 320ms cubic-bezier(0, 0, 0.2, 1) both;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Named separately so the header holds still while the page beneath it moves,
+   rather than sliding out and back with the rest of the document. */
+.header {
+  view-transition-name: site-header;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1310,6 +1473,15 @@ h3 {
 
   .timeline__description {
     grid-column: 2;
+  }
+
+  /* One column narrower here, with the cover keeping its own leading slot. */
+  .timeline--media .timeline__item {
+    grid-template-columns: 150px 0.7fr 1.3fr;
+  }
+
+  .timeline--media .timeline__description {
+    grid-column: 3;
   }
 
   .detail__aside {
@@ -1401,6 +1573,20 @@ h3 {
     grid-column: auto;
   }
 
+  /* Stacked here, so the cover would otherwise run the full page width. */
+  .timeline--media .timeline__item {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline--media .timeline__description {
+    grid-column: auto;
+  }
+
+  .timeline__media {
+    max-width: 280px;
+    margin-bottom: 0.4rem;
+  }
+
   .detail__aside {
     grid-template-columns: 1fr;
   }
@@ -1415,6 +1601,20 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* The rule below caps duration but not delay, so a staggered card would
+     still sit blank for half a second. Drop the entrance entirely instead. */
+  .reveal,
+  .reveal.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 
   *,

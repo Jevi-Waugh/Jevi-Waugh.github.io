@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import { capabilities, education, experience, skillGroups } from '../data/profile';
+import { education, experience, focusAreas, skillGroups } from '../data/profile';
 ---
 
 <BaseLayout
@@ -13,10 +13,21 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
     title="Experience"
     description="Research, engineering, teaching, and leadership roles at The University of Queensland and in industry, with education and technical skills."
   />
+  <div class="shell">
+    <div class="page-actions page-actions--under-hero">
+      <a class="button button--primary" href="/uploads/resume.pdf">Download full CV ↗</a>
+    </div>
+  </div>
   <section class="section shell">
-    <div class="timeline">
+    <div class="timeline timeline--railed">
       {experience.map((item) => (
-        <article class="timeline__item reveal">
+        <article
+          class:list={[
+            'timeline__item',
+            'reveal',
+            { 'timeline__item--current': item.period.includes('Present') },
+          ]}
+        >
           <div>
             <div class="timeline__period">{item.period}</div>
             <div class="timeline__type">{item.type}</div>
@@ -45,8 +56,11 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
         <p class="eyebrow">Education</p>
         <h2>Education</h2>
         {education.map((item) => (
-          <article class="education-card">
-            <span class="education-card__period">{item.period}</span>
+          <article class:list={['education-card', { 'education-card--pending': item.status }]}>
+            <span class="education-card__period">
+              {item.period}
+              {item.status && <span class="education-card__status">{item.status}</span>}
+            </span>
             <h3>{item.degree}</h3>
             <p class="accent">{item.institution}</p>
             <p class="muted">{item.detail}</p>
@@ -54,17 +68,15 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
         ))}
       </div>
       <div class="reveal">
-        <p class="eyebrow">Core skills</p>
-        <h2>Primary tools</h2>
+        <p class="eyebrow">Research focus</p>
+        <h2>What I work on</h2>
         <p class="lede">
-          Mathematical modelling, experimental ML, data analysis, and software
-          implementation.
+          The areas my research, projects, and reading keep returning to: mostly
+          how visual models represent structure, and what mathematics explains
+          their behaviour.
         </p>
         <div class="capabilities">
-          {capabilities.map((capability) => <span class="capability">{capability}</span>)}
-        </div>
-        <div style="margin-top:2rem">
-          <a class="button button--primary" href="/uploads/resume.pdf">Download full CV ↗</a>
+          {focusAreas.map((area) => <span class="capability">{area}</span>)}
         </div>
       </div>
     </div>

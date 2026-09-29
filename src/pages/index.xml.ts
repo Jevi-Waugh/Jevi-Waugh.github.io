@@ -2,9 +2,8 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context: { site: URL }) {
-  const [projects, publications, talks] = await Promise.all([
+  const [projects, talks] = await Promise.all([
     getCollection('projects'),
-    getCollection('publications'),
     getCollection('talks'),
   ]);
 
@@ -14,12 +13,6 @@ export async function GET(context: { site: URL }) {
       description: entry.data.summary,
       pubDate: entry.data.date,
       link: `/project/${entry.id}/`,
-    })),
-    ...publications.map((entry) => ({
-      title: entry.data.title,
-      description: entry.data.summary,
-      pubDate: entry.data.date,
-      link: `/publication/${entry.id}/`,
     })),
     ...talks.map((entry) => ({
       title: entry.data.title,
@@ -31,7 +24,7 @@ export async function GET(context: { site: URL }) {
 
   return rss({
     title: 'Jevi Waugh',
-    description: 'Machine-learning research, engineering projects, publications, and talks.',
+    description: 'Machine-learning research, engineering projects, and talks.',
     site: context.site,
     items,
   });

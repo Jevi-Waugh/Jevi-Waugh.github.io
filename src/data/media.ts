@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import portrait from '../assets/media/portrait.jpg';
+import presenting from '../assets/gallery/Summer research program presentation 1 2026.JPG';
 import research from '../assets/media/frequency-domain.png';
 import showcase from '../assets/media/showcase.png';
 import flanT5 from '../assets/media/flan-t5.png';
@@ -10,8 +11,9 @@ import machineLearning from '../assets/media/machine-learning.png';
 import functionalProgramming from '../assets/media/functional-programming.png';
 import theory from '../assets/media/theory-of-computing.png';
 import softwareEngineering from '../assets/media/software-engineering.jpg';
+import traceforest from '../assets/media/blackboxlabs.png';
 
-export { portrait };
+export { portrait, presenting };
 
 const media: Record<string, ImageMetadata> = {
   research,
@@ -24,6 +26,7 @@ const media: Record<string, ImageMetadata> = {
   'functional-programming': functionalProgramming,
   'theory-of-computing': theory,
   'software-engineering': softwareEngineering,
+  traceforest,
 };
 
 export function getMedia(key?: string) {

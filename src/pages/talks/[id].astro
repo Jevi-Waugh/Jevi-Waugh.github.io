@@ -31,7 +31,7 @@ const { title, summary, date, event, location, recording, links } = entry.data;
   </header>
   <article class="section shell">
     {recording && (
-      <div style="position:relative;width:100%;padding-top:56.25%;margin-bottom:4rem;border-radius:20px;overflow:hidden;border:1px solid var(--line)">
+      <div style="position:relative;width:100%;padding-top:56.25%;margin-bottom:2.5rem;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)">
         <iframe
           src={recording}
           title={title}

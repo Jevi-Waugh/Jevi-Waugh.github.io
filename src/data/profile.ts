@@ -2,7 +2,7 @@ export const profile = {
   name: 'Jevi Waugh',
   title: 'Machine Learning Researcher · Engineer · Educator',
   description:
-    'I build and study machine-learning systems, with a particular interest in frequency-domain vision, model behaviour, and mathematically grounded methods.',
+    'Machine learning researcher at The University of Queensland working on frequency-domain methods for computer vision, alongside part-time AI engineering and teaching.',
   email: 'jevi.waugh@uq.edu.au',
   emails: {
     research: 'jevi.waugh@uq.edu.au',
@@ -18,11 +18,14 @@ export const profile = {
 };
 
 export const navigation = [
-  { label: 'Research', href: '/#research' },
   { label: 'Projects', href: '/projects/' },
   { label: 'Experience', href: '/experience/' },
   { label: 'Teaching', href: '/teaching/' },
   { label: 'Talks', href: '/talks/' },
+];
+
+export const secondaryNavigation = [
+  { label: 'Industry Officer', href: '/industry-officer/' },
   { label: 'Gallery', href: '/gallery/' },
   { label: 'Pursuits', href: '/pursuits/' },
   { label: 'Search', href: '/search/' },
@@ -35,17 +38,30 @@ export const metrics = [
   { value: '1.5K+', label: 'extension downloads', detail: 'for TraceForest' },
 ];
 
-export const experience = [
+export type ExperienceItem = {
+  role: string;
+  organisation: string;
+  period: string;
+  type: string;
+  description: string;
+  /** Rendered as HTML, so inline tags such as <strong> are allowed. */
+  highlights: string[];
+  /** Set when the role has a dedicated page on this site. */
+  href?: string;
+};
+
+export const experience: ExperienceItem[] = [
   {
-    role: 'Research Assistant',
+    role: 'Machine Learning Research Assistant',
     organisation: 'The University of Queensland',
     period: 'Mar 2026 — Present',
     type: 'Research',
     description:
-      'Deriving a Generalised Kaleidoscope transform for frequency-based autoencoders and supporting research on frequency-domain methods for computer vision.',
+      'Deriving novel frequency-domain algorithms for frequency-based autoencoders in image segmentation, and evaluating autoencoder architectures for compatibility with them.',
     highlights: [
-      'Developing mathematically grounded frequency–spatial transformations for segmentation.',
-      'Contributing to a manuscript targeted for submission in 2026.',
+      'Derived 3 novel algorithms — <strong>Kaleidoscope Fourier</strong>, <strong>Generalised Kaleidoscope Fourier</strong>, and <strong>Fourier Unshuffle</strong> — for use in frequency-based autoencoders for image segmentation tasks.',
+      'Developed and evaluated multiple autoencoder architectures to assess compatibility with novel frequency-domain algorithms, comparing model behaviour and performance across architectural variants.',
+      'Contributing to research targeting manuscript submission in 2027, focusing on frequency-domain methods for computer vision.',
     ],
   },
   {
@@ -75,6 +91,7 @@ export const experience = [
     organisation: 'UQ Computing Society',
     period: 'Nov 2025 — Present',
     type: 'Leadership',
+    href: '/industry-officer/',
     description:
       'Leading sponsorship outreach, pitching, negotiation, and partner relationships for one of UQ’s largest technology societies.',
     highlights: [

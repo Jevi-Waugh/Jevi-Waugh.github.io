@@ -9,9 +9,9 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
   description="Research, teaching, engineering, and leadership experience from Jevi Waugh."
 >
   <PageHero
-    eyebrow="Experience"
-    title="Working across ideas, people, and systems."
-    description="Research gives me difficult questions. Engineering makes them concrete. Teaching and leadership make the work useful beyond myself."
+    eyebrow="Background"
+    title="Experience"
+    description="Research, engineering, teaching, and leadership roles at The University of Queensland and in industry, with education and technical skills."
   />
   <section class="section shell">
     <div class="timeline">
@@ -22,14 +22,16 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
             <div class="timeline__type">{item.type}</div>
           </div>
           <div>
-            <div class="timeline__role">{item.role}</div>
+            <div class="timeline__role">
+              {item.href ? <a class="hero__link" href={item.href}>{item.role}</a> : item.role}
+            </div>
             <div class="timeline__org">{item.organisation}</div>
           </div>
           <div>
             <p class="timeline__description">{item.description}</p>
             {item.highlights.length > 0 && (
               <ul class="timeline__highlights">
-                {item.highlights.map((highlight) => <li>{highlight}</li>)}
+                {item.highlights.map((highlight) => <li set:html={highlight} />)}
               </ul>
             )}
           </div>
@@ -41,7 +43,7 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
     <div class="split">
       <div class="reveal">
         <p class="eyebrow">Education</p>
-        <h2>Mathematical foundations, applied deeply.</h2>
+        <h2>Education</h2>
         {education.map((item) => (
           <article class="education-card">
             <span class="education-card__period">{item.period}</span>
@@ -52,10 +54,10 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
         ))}
       </div>
       <div class="reveal">
-        <p class="eyebrow">Working set</p>
-        <h2>Tools follow the problem.</h2>
+        <p class="eyebrow">Core skills</p>
+        <h2>Primary tools</h2>
         <p class="lede">
-          I work across mathematical modelling, experimental ML, data analysis, and software
+          Mathematical modelling, experimental ML, data analysis, and software
           implementation.
         </p>
         <div class="capabilities">
@@ -71,11 +73,11 @@ import { capabilities, education, experience, skillGroups } from '../data/profil
     <div class="section-heading reveal">
       <div>
         <p class="eyebrow">Technical toolkit</p>
-        <h2>Languages and frameworks.</h2>
+        <h2>Languages and frameworks</h2>
       </div>
       <p>
-        A fuller view of the tools I use across research, data analysis, teaching, and
-        software development.
+        The full set used across research, data analysis, teaching, and software
+        development.
       </p>
     </div>
     <div class="skill-groups">

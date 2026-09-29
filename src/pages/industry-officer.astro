@@ -1,0 +1,97 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { experience, profile } from '../data/profile';
+
+const role = experience.find(
+  (item) => item.role === 'Industry Officer' && item.organisation === 'UQ Computing Society',
+)!;
+
+// Drop the report into static/uploads/ under this name and the section below
+// publishes itself. Until then the page simply doesn't mention it.
+const reportFile = 'uqcs-industry-officer-report.pdf';
+const reportHref = `/uploads/${reportFile}`;
+const hasReport = fs.existsSync(path.join(process.cwd(), 'static', 'uploads', reportFile));
+---
+
+<BaseLayout
+  title="Industry Officer — UQ Computing Society"
+  description="Jevi Waugh leads sponsorship outreach, pitching, negotiation, and partner relationships as Industry Officer for UQ Computing Society."
+>
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Leadership · {role.period}</p>
+      <h1>Industry Officer</h1>
+      <p class="lede">{role.description}</p>
+      <div class="page-actions">
+        {hasReport && (
+          <a class="button button--primary" href={reportHref}>Read the officer report ↗</a>
+        )}
+        <a class="button" href={profile.uqcs}>UQ Computing Society ↗</a>
+      </div>
+      {!hasReport && (
+        <p class="mono muted" style="margin:1.25rem 0 0">
+          Officer report in progress — it will be published on this page.
+        </p>
+      )}
+    </div>
+  </header>
+
+  <section class="section shell">
+    <div class="detail">
+      <div class="detail__content">
+        <h2>The role</h2>
+        <p>
+          UQ Computing Society is one of the largest technology societies at The University
+          of Queensland. As Industry Officer I own the relationship between the society and
+          the companies that fund and support it — identifying prospective partners, pitching
+          the society, negotiating terms, and looking after those partnerships once signed.
+        </p>
+
+        <h2>Outcomes</h2>
+        <ul>
+          {role.highlights.map((highlight) => <li set:html={highlight} />)}
+        </ul>
+
+        <h2>Officer report</h2>
+        {hasReport ? (
+          <>
+            <p>
+              The full report covers the term in detail — sponsorship pipeline, partner
+              outcomes, and handover notes.
+            </p>
+            <p>
+              <a href={reportHref}>Download the officer report (PDF) ↗</a>
+            </p>
+          </>
+        ) : (
+          <p>
+            The officer report documents the term in full — sponsorship pipeline, partner
+            outcomes, and handover notes. It is not yet complete, and will be published
+            on this page as a PDF once it is.
+          </p>
+        )}
+      </div>
+
+      <aside class="detail__aside">
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Organisation</span>
+          <span>{role.organisation}</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Term</span>
+          <span>{role.period}</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Focus</span>
+          <span>Sponsorship &amp; industry partnerships</span>
+        </div>
+        <div class="detail__aside-block">
+          <span class="detail__aside-label">Links</span>
+          <span><a href={profile.uqcs}>uqcs.org ↗</a></span>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

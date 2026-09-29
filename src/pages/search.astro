@@ -4,10 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { pursuits, skillGroups } from '../data/profile';
 
-const [projects, teaching, publications, talks] = await Promise.all([
+const [projects, teaching, talks] = await Promise.all([
   getCollection('projects'),
   getCollection('teaching'),
-  getCollection('publications'),
   getCollection('talks'),
 ]);
 
@@ -47,13 +46,6 @@ const results = [
     tags: entry.data.topics,
     href: `/teaching/${entry.id}/`,
   })),
-  ...publications.map((entry) => ({
-    title: entry.data.title,
-    summary: entry.data.summary,
-    type: 'Publication',
-    tags: entry.data.tags,
-    href: `/publication/${entry.id}/`,
-  })),
   ...talks.map((entry) => ({
     title: entry.data.title,
     summary: entry.data.summary,
@@ -64,11 +56,11 @@ const results = [
 ];
 ---
 
-<BaseLayout title="Search" description="Search Jevi Waugh’s projects, publications, teaching, and talks.">
+<BaseLayout title="Search" description="Search Jevi Waugh’s projects, teaching, and talks.">
   <PageHero
-    eyebrow="Search"
-    title="Find a signal."
-    description="Search across projects, research notes, publications, teaching, and talks."
+    eyebrow="Site index"
+    title="Search"
+    description="Search across projects, research notes, teaching, and talks."
   />
   <section class="section shell">
     <div class="search-box">

@@ -3,42 +3,57 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WorkCard from '../components/WorkCard.astro';
-import { portrait } from '../data/media';
-import { experience, metrics, profile } from '../data/profile';
+import { presenting } from '../data/media';
+import { education, experience, metrics, profile } from '../data/profile';
 
 const projects = (await getCollection('projects'))
   .filter((entry) => entry.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
-const publication = (await getCollection('publications'))[0];
 const talk = (await getCollection('talks'))[0];
+const currentRoles = experience.filter((item) => item.period.includes('Present'));
+const study = education[0];
 ---
 
 <BaseLayout>
   <section class="hero shell">
-    <div class="spectral-orbit" aria-hidden="true"></div>
-    <div class="hero__topline">
-      <span class="availability">Open to research collaboration</span>
-      <span>Brisbane, AU · 27.47° S / 153.03° E</span>
+    <p class="eyebrow">{profile.location}</p>
+    <h1>Jevi Waugh</h1>
+    <p class="hero__description">
+      Machine learning researcher working on frequency-domain methods for computer
+      vision. I build the systems I study, and teach the mathematics behind them.
+    </p>
+
+    <ul class="hero__roles">
+      {currentRoles.map((role) => (
+        <li>
+          <span class="hero__role">
+            {role.href ? <a class="hero__link" href={role.href}>{role.role}</a> : role.role}
+          </span>
+          <span class="hero__org">{role.organisation}</span>
+          <span class="hero__period">{role.period}</span>
+        </li>
+      ))}
+      <li>
+        <span class="hero__role">{study.degree}</span>
+        <span class="hero__org">{study.institution}</span>
+        <span class="hero__period">{study.period}</span>
+      </li>
+    </ul>
+
+    <div class="hero__actions">
+      <a class="button button--primary" href="/uploads/resume.pdf">Download CV ↗</a>
+      <a class="button" href="/experience/">Full experience</a>
+      <a class="button" href="/contact/">Contact</a>
     </div>
-    <p class="eyebrow">Researcher · Engineer · Educator</p>
-    <h1>
-      <span class="hero__title-line">Building models.</span>
-      <span class="hero__title-line">Studying what’s inside.</span>
-    </h1>
-    <div class="hero__footer">
-      <p class="hero__description">{profile.description}</p>
-      <div class="hero__actions">
-        <a class="button button--primary" href="#research">Explore work ↓</a>
-        <a class="button" href="/uploads/resume.pdf">Download CV ↗</a>
-      </div>
-    </div>
+
+    <p class="hero__status">Open to research collaboration</p>
   </section>
 
   <section aria-label="Selected results">
     <div class="metrics shell">
       {metrics.map((metric) => (
-        <div class="metric reveal">
+        <div class="metric">
           <strong class="metric__value">{metric.value}</strong>
           <span class="metric__label">{metric.label}</span>
           <span class="metric__detail">{metric.detail}</span>
@@ -51,11 +66,11 @@ const talk = (await getCollection('talks'))[0];
     <div class="section-heading reveal">
       <div>
         <p class="eyebrow">Selected work</p>
-        <h2>Research that moves between theory and systems.</h2>
+        <h2>Projects</h2>
       </div>
       <p>
-        From frequency-domain vision to explainable code provenance, I am interested in
-        methods that expose useful structure—and in building them far enough to test.
+        Research prototypes and developer tools across computer vision, explainable
+        AI, and NLP. Each links to methods, results, and source.
       </p>
     </div>
     <div class="work-grid">
@@ -66,96 +81,50 @@ const talk = (await getCollection('talks'))[0];
     </div>
   </section>
 
+  {talk && (
+    <section class="section shell" id="talks">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Latest talk</p>
+          <h2>{talk.data.event}</h2>
+        </div>
+        <p>{talk.data.summary}</p>
+      </div>
+      <p class="mono muted">{talk.data.date.toLocaleDateString('en-AU', { dateStyle: 'long' })}</p>
+      <div style="margin-top:1.5rem">
+        <a class="button" href={`/talks/${talk.id}/`}>Watch the talk →</a>
+      </div>
+    </section>
+  )}
+
   <section class="section shell">
     <div class="feature reveal">
       <div class="feature__image">
         <Image
-          src={portrait}
-          alt="Jevi Waugh"
-          width={700}
-          height={700}
+          src={presenting}
+          alt="Jevi Waugh presenting frequency-domain segmentation work at the 2026 UQ Summer Research Program showcase"
+          width={880}
+          height={660}
           loading="lazy"
         />
       </div>
       <div class="feature__copy">
         <p class="eyebrow">About</p>
-        <h2>More than a model and a metric.</h2>
+        <h2>Research, engineering, and teaching.</h2>
         <p>
-          I am a Machine Learning Researcher and Master of Data Science student at
-          <strong>The University of Queensland</strong>. My work focuses on computer vision,
+          I am a research assistant and Master of Data Science student at
+          <strong>The University of Queensland</strong>, working on computer vision,
           deep learning, and the mathematical structure behind model behaviour.
         </p>
         <p>
-          Alongside research, I teach subjects ranging from deep learning to capstone software
-          delivery, work part-time as an AI engineer, lead industry partnerships for UQ Computing
-          Society, and build tools designed to survive outside a notebook.
+          Alongside research I teach capstone software delivery, pattern recognition,
+          and introductory software engineering; work part-time as an AI engineer at
+          Apex Fincap; and lead industry partnerships for UQ Computing Society.
         </p>
         <div class="page-actions">
-          <a class="button button--primary" href="/experience/">View experience</a>
-          <a class="button" href="/contact/">Start a conversation</a>
+          <a class="button button--primary" href="/contact/">Contact me</a>
+          <a class="button" href={profile.linkedin}>LinkedIn ↗</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section shell">
-    <div class="section-heading reveal">
-      <div>
-        <p class="eyebrow">Across the stack</p>
-        <h2>Research, teaching, leadership, and execution.</h2>
-      </div>
-      <p>
-        The common thread is turning difficult ideas into something other people can use,
-        understand, or build upon.
-      </p>
-    </div>
-    <div class="timeline">
-      {experience.slice(0, 4).map((item) => (
-        <article class="timeline__item reveal">
-          <div>
-            <div class="timeline__period">{item.period}</div>
-            <div class="timeline__type">{item.type}</div>
-          </div>
-          <div>
-            <div class="timeline__role">{item.role}</div>
-            <div class="timeline__org">{item.organisation}</div>
-          </div>
-          <p class="timeline__description">{item.description}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section shell" id="publication">
-    <div class="split">
-      <div class="reveal">
-        <p class="eyebrow">Publication</p>
-        <h2>{publication.data.title}</h2>
-        <p class="lede">{publication.data.summary}</p>
-        <p class="mono muted">{publication.data.status} · {publication.data.venue}</p>
-        <a class="button" href={`/publication/${publication.id}/`}>Read publication note →</a>
-      </div>
-      <div class="reveal">
-        <p class="eyebrow">Latest talk</p>
-        <h2>{talk.data.event}</h2>
-        <p class="lede">{talk.data.summary}</p>
-        <p class="mono muted">{talk.data.date.toLocaleDateString('en-AU', { dateStyle: 'long' })}</p>
-        <a class="button" href={`/talks/${talk.id}/`}>Watch the talk →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section shell">
-    <div class="cta reveal">
-      <p class="eyebrow">Let’s work together</p>
-      <h2>Have an unusual machine-learning problem?</h2>
-      <p>
-        I am interested in research collaborations, technical projects, and conversations
-        about frequency-domain vision, model behaviour, or tools that connect research with practice.
-      </p>
-      <div class="page-actions">
-        <a class="button button--primary" href="/contact/">Contact me</a>
-        <a class="button" href={profile.linkedin}>Connect on LinkedIn ↗</a>
       </div>
     </div>
   </section>

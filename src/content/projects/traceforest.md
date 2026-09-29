@@ -5,6 +5,8 @@ date: 2025-12-01
 featured: true
 order: 2
 kind: "Developer Tool"
+imageKey: "traceforest"
+imageFit: "contain"
 metric: "94% accuracy · 1.5K+ extension downloads"
 tags: ["Explainable AI", "Random Forests", "Developer Tools"]
 links:

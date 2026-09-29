@@ -10,15 +10,19 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, summary, date, kind, metric, imageKey, tags } = entry.data;
+const { title, summary, date, kind, metric, imageKey, imageFit, tags } = entry.data;
 const image = getMedia(imageKey);
 ---
 
 <article class="work-card reveal">
   <a href={`/project/${entry.id}/`} aria-label={`Read ${title}`}>
-    <div class="work-card__media">
+    <div class:list={['work-card__media', { 'work-card__media--contain': imageFit === 'contain' }]}>
       {image ? (
-        <Image src={image} alt="" width={900} height={560} loading="lazy" />
+        imageFit === 'contain' ? (
+          <Image src={image} alt="" width={360} loading="lazy" />
+        ) : (
+          <Image src={image} alt="" width={440} height={280} loading="lazy" />
+        )
       ) : (
         <div class="work-card__placeholder" aria-hidden="true">[{kind}]</div>
       )}

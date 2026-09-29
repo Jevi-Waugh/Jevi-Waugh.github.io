@@ -5,8 +5,11 @@ import PageHero from '../../components/PageHero.astro';
 
 const courses = (await getCollection('teaching')).sort((a, b) => a.data.order - b.data.order);
 const isCurrent = (course: (typeof courses)[number]) => course.data.period?.includes('Present');
-const current = courses.filter(isCurrent);
-const past = courses.filter((course) => !isCurrent(course));
+
+const groups = [
+  { label: 'Currently teaching', courses: courses.filter(isCurrent) },
+  { label: 'Previously taught', courses: courses.filter((course) => !isCurrent(course)) },
+].filter((group) => group.courses.length > 0);
 ---
 
 <BaseLayout
@@ -15,46 +18,29 @@ const past = courses.filter((course) => !isCurrent(course));
 >
   <PageHero
     eyebrow="Teaching at UQ"
-    title="Making hard ideas workable."
-    description="I teach across capstone software delivery, deep learning and pattern recognition, and first-year software engineering, and have taught machine learning, programming paradigms, and computational theory."
+    title="Teaching"
+    description="Currently teaching capstone software delivery (DECO3801), pattern recognition and deep learning (COMP3710), and introductory software engineering (CSSE1001). Previously machine learning, programming paradigms, and theory of computing."
   />
-  <section class="section shell">
-    <p class="eyebrow">Currently teaching</p>
-    <div class="teaching-grid">
-      {current.map((course) => (
-        <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
-          <span class="teaching-card__code">{course.data.code}</span>
-          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem)">{course.data.title}</h2>
-          {course.data.period && <p class="mono muted" style="font-size:.75rem">{course.data.period}</p>}
-          <p>{course.data.summary}</p>
-          <span class="mono accent" style="font-size:.75rem">Course detail →</span>
-        </a>
-      ))}
-    </div>
-  </section>
-  <section class="section--tight shell">
-    <p class="eyebrow">Previously taught</p>
-    <div class="teaching-grid">
-      {past.map((course) => (
-        <a class="teaching-card reveal" href={`/teaching/${course.id}/`}>
-          <span class="teaching-card__code">{course.data.code}</span>
-          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem)">{course.data.title}</h2>
-          {course.data.period && <p class="mono muted" style="font-size:.75rem">{course.data.period}</p>}
-          <p>{course.data.summary}</p>
-          <span class="mono accent" style="font-size:.75rem">Course detail →</span>
-        </a>
-      ))}
-    </div>
-  </section>
-  <section class="section--tight shell">
-    <div class="cta reveal">
-      <p class="eyebrow">Teaching philosophy</p>
-      <h2>Understanding before memorisation.</h2>
-      <p>
-        Whether the topic is recursion, complexity, or gradient descent, I try to expose the
-        structure beneath the procedure. Students should leave with a way to reason, not only
-        a recipe to repeat.
-      </p>
-    </div>
-  </section>
+  {groups.map((group) => (
+    <section class="section--tight shell">
+      <p class="eyebrow">{group.label}</p>
+      <div class="teaching-grid">
+        {group.courses.map((course) => (
+          <a class="teaching-card" href={`/teaching/${course.id}/`}>
+            <div class="teaching-card__meta">
+              <span class="teaching-card__code">{course.data.code}</span>
+              {course.data.period && (
+                <span class="teaching-card__period">{course.data.period}</span>
+              )}
+            </div>
+            <div class="teaching-card__body">
+              <h2>{course.data.title}</h2>
+              <p>{course.data.summary}</p>
+            </div>
+            <span class="teaching-card__arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </BaseLayout>

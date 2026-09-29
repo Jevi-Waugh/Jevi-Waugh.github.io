@@ -15,6 +15,9 @@ const workSchema = z.object({
   order: z.number().default(0),
   tags: z.array(z.string()).default([]),
   imageKey: z.string().optional(),
+  // 'contain' suits logos and diagrams, which must not be cropped; photos and
+  // screenshots use the default 'cover'.
+  imageFit: z.enum(['cover', 'contain']).default('cover'),
   links: z.array(linkSchema).default([]),
 });
 

@@ -271,8 +271,8 @@ h3 {
 .menu-toggle,
 .theme-toggle {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1118,7 +1118,8 @@ h3 {
   color: var(--ink);
   background: var(--bg);
   font: inherit;
-  font-size: 0.98rem;
+  /* Must stay at or above 16px: iOS auto-zooms the page on focus otherwise. */
+  font-size: 1rem;
   transition:
     border-color 140ms ease,
     box-shadow 140ms ease;

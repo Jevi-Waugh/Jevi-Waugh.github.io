@@ -10,7 +10,11 @@ const projects = (await getCollection('projects'))
   .filter((entry) => entry.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
-const talk = (await getCollection('talks'))[0];
+/* Sorted, not glob order: the homepage shows the most recent talk, and glob
+   order is alphabetical by filename. */
+const talk = (await getCollection('talks')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)[0];
 const currentRoles = experience.filter((item) => item.period.includes('Present'));
 const study = education[0];
 ---

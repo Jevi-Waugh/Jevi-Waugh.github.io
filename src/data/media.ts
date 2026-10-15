@@ -13,6 +13,7 @@ import theory from '../assets/media/theory-of-computing.png';
 import softwareEngineering from '../assets/media/software-engineering.jpg';
 import traceforest from '../assets/media/blackboxlabs.png';
 import vitAttention from '../assets/media/Attention.png';
+import comp3710Lecture from '../assets/media/comp3710-lecture-card.png';
 
 export { portrait, presenting };
 
@@ -29,6 +30,7 @@ const media: Record<string, ImageMetadata> = {
   'software-engineering': softwareEngineering,
   traceforest,
   'vit-attention': vitAttention,
+  'comp3710-lecture': comp3710Lecture,
 };
 
 export function getMedia(key?: string) {

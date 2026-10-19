@@ -30,7 +30,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, summary, code, period, topics, imageKey } = entry.data;
+const { title, summary, code, period, topics, imageKey, imageFit } = entry.data;
 const image = getMedia(imageKey);
 ---
 
@@ -43,7 +43,13 @@ const image = getMedia(imageKey);
     </div>
   </header>
   <article class="section shell">
-    {image && <Image class="detail__hero-image" src={image} alt="" width={1400} height={700} />}
+    {image && (
+      imageFit === 'contain' ? (
+        <Image class="detail__hero-image detail__hero-image--contain" src={image} alt="" width={720} />
+      ) : (
+        <Image class="detail__hero-image" src={image} alt="" width={1400} height={700} />
+      )
+    )}
     <div class="detail">
       <div class="detail__content"><Content /></div>
       <aside class="detail__aside">

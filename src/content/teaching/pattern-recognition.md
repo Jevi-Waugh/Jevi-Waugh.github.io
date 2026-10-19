@@ -8,7 +8,7 @@ featured: true
 order: 2
 tags: ["Academic", "Machine Learning", "Deep Learning"]
 topics: ["Deep Learning", "PyTorch", "Computer Vision", "Generative Models"]
-imageKey: "machine-learning"
+imageKey: "pattern-recognition"
 links: []
 ---
 

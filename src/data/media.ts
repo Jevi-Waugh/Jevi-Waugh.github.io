@@ -10,10 +10,12 @@ import gallstones from '../assets/media/gallstones.png';
 import machineLearning from '../assets/media/machine-learning.png';
 import functionalProgramming from '../assets/media/functional-programming.png';
 import theory from '../assets/media/theory-of-computing.png';
-import softwareEngineering from '../assets/media/software-engineering.jpg';
+import softwareEngineering from '../assets/media/CSSE1001 Card.png';
 import traceforest from '../assets/media/blackboxlabs.png';
 import vitAttention from '../assets/media/Attention.png';
 import comp3710Lecture from '../assets/media/comp3710-lecture-card.png';
+import patternRecognition from '../assets/media/COMP3710 Card.png';
+import designComputingStudio from '../assets/media/DECO3801 Card.png';
 
 export { portrait, presenting };
 
@@ -31,6 +33,8 @@ const media: Record<string, ImageMetadata> = {
   traceforest,
   'vit-attention': vitAttention,
   'comp3710-lecture': comp3710Lecture,
+  'pattern-recognition': patternRecognition,
+  'design-computing-studio': designComputingStudio,
 };
 
 export function getMedia(key?: string) {

@@ -8,6 +8,7 @@ featured: true
 order: 1
 tags: ["Academic", "Capstone", "Software Engineering"]
 topics: ["Team Supervision", "Product Design", "Prototyping", "Software Delivery"]
+imageKey: "design-computing-studio"
 links: []
 ---
 

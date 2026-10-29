@@ -1012,6 +1012,111 @@ h3 {
   height: auto;
 }
 
+/* Sponsors and the handover photos share one row so the page ends without a
+   long scroll. Each half keeps its own heading. */
+.closing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.closing__column .section-heading {
+  margin-bottom: 1.25rem;
+}
+
+.closing .sponsors {
+  display: block;
+  max-width: none;
+}
+
+[data-zoom] {
+  cursor: zoom-in;
+}
+
+.closing__photos {
+  display: grid;
+  gap: 1rem;
+}
+
+.closing__photo {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.closing__photo a {
+  display: block;
+  border: 0;
+}
+
+.closing__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The card is tall and portrait; cropping it keeps this column level with the
+   sponsor sheet, and the lightbox shows the handwriting in full. */
+.closing__photo--crop img {
+  height: 230px;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.closing__photo figcaption {
+  padding: 0.7rem 0.9rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+}
+
+/* Full-size viewer, opened by any [data-zoom] link on the page. */
+.lightbox {
+  width: min(94vw, 1400px);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background: rgb(10 10 12 / 0.86);
+}
+
+.lightbox img {
+  display: block;
+  width: 100%;
+  max-height: 94vh;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.4);
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox__close:hover {
+  background: rgb(0 0 0 / 0.75);
+}
+
 /* Society mark alongside the page title, sized to the eyebrow + h1 block. */
 .page-hero__brand {
   display: flex;
@@ -1658,6 +1763,17 @@ h3 {
 
   .nav__links a {
     padding: 0.6rem;
+  }
+
+  /* Too narrow for the two-up row: sponsors first, then the handover photos. */
+  .closing {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  .closing__photo--crop img {
+    height: auto;
+    object-fit: contain;
   }
 
   .menu-toggle {

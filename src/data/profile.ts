@@ -89,11 +89,11 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Industry Officer',
     organisation: 'UQ Computing Society',
-    period: 'Nov 2025 - Present',
+    period: 'Nov 2025 - Oct 2026',
     type: 'Leadership',
     href: '/industry-officer/',
     description:
-      'Leading sponsorship outreach, pitching, negotiation, and partner relationships for one of UQ’s largest technology societies.',
+      'Led sponsorship outreach, pitching, negotiation, and partner relationships for one of UQ’s largest technology societies.',
     highlights: [
       'Secured more than $30,000 in sponsorship funding.',
       'Increased funding by 40% and expanded the sponsor base by 30% in 2026.',

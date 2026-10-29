@@ -1,11 +1,13 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import uqcsLogo from '../assets/media/UQCS Logo.png';
 import sponsors from '../assets/media/2026 sponsors.png';
+import agm from '../assets/media/uqcs-2026-agm.jpg';
+import thankYouCard from '../assets/media/jevi-ty-card-industry-officer-2026.jpg';
 import { experience, profile } from '../data/profile';
 
 const role = experience.find(
@@ -27,11 +29,17 @@ const pageModules = import.meta.glob<{ default: ImageMetadata }>(
 const reportPageImages = Object.entries(pageModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, module]) => module.default);
+
+// Full-resolution versions behind the lightbox. Without JS these stay plain
+// links that open the image on its own.
+const [sponsorsFull, agmFull, cardFull] = await Promise.all(
+  [sponsors, agm, thankYouCard].map((src) => getImage({ src, format: 'webp' })),
+);
 ---
 
 <BaseLayout
   title="Industry Officer, UQ Computing Society"
-  description="Jevi Waugh leads sponsorship outreach, pitching, negotiation, and partner relationships as Industry Officer for UQ Computing Society."
+  description="Jevi Waugh led sponsorship outreach, pitching, negotiation, and partner relationships as Industry Officer for UQ Computing Society across the 2026 term."
 >
   <header class="page-hero">
     <div class="shell">
@@ -77,9 +85,11 @@ const reportPageImages = Object.entries(pageModules)
         <h2>The role</h2>
         <p>
           UQ Computing Society is one of the largest technology societies at The University
-          of Queensland. As Industry Officer I own the relationship between the society and
+          of Queensland. As Industry Officer I owned the relationship between the society and
           the companies that fund and support it: identifying prospective partners, pitching
           the society, negotiating terms, and looking after those partnerships once signed.
+          The term closed at the 2026 annual general meeting, and I continue with the society
+          as Industry Subcommittee Advisor.
         </p>
 
         {hasReport && (
@@ -143,10 +153,10 @@ const reportPageImages = Object.entries(pageModules)
               <span class="tenure__years mono">2025 - 2026</span>
               <span class="tenure__role">Industry Officer</span>
             </li>
-            <li class="tenure__item tenure__item--next">
+            <li class="tenure__item">
               <span class="tenure__years mono">2026 - 2027</span>
               <span class="tenure__role">Industry Subcommittee Advisor</span>
-              <span class="tenure__note mono">Upcoming</span>
+              <span class="tenure__note mono">Current</span>
             </li>
           </ol>
         </div>
@@ -163,20 +173,61 @@ const reportPageImages = Object.entries(pageModules)
   </section>
 
   <section class="section section--tight shell">
-    <div class="section-heading">
-      <h2>2026 sponsors</h2>
-      <p>The partners who backed UQ Computing Society across my term.</p>
-    </div>
-    <div class="sponsors">
-      <Image
-        src={sponsors}
-        alt="UQ Computing Society 2026 sponsors: hackathon, social, and industry partners"
-        width={1405}
-        loading="lazy"
-      />
+    <div class="closing">
+      <div class="closing__column">
+        <div class="section-heading">
+          <h2>2026 sponsors</h2>
+          <p>The partners who backed UQ Computing Society across my term.</p>
+        </div>
+        <a class="sponsors" href={sponsorsFull.src} data-zoom>
+          <Image
+            src={sponsors}
+            alt="UQ Computing Society 2026 sponsors: hackathon, social, and industry partners"
+            width={1405}
+            loading="lazy"
+          />
+        </a>
+      </div>
+
+      <div class="closing__column">
+        <div class="section-heading">
+          <h2>Handover</h2>
+          <p>The 2026 term closed at the annual general meeting in October.</p>
+        </div>
+        <div class="closing__photos">
+          <figure class="closing__photo">
+            <a href={agmFull.src} data-zoom>
+              <Image
+                src={agm}
+                alt="The UQ Computing Society 2026 committee at the annual general meeting"
+                width={1100}
+                loading="lazy"
+              />
+            </a>
+            <figcaption>The 2026 committee at the AGM.</figcaption>
+          </figure>
+          <figure class="closing__photo closing__photo--crop">
+            <a href={cardFull.src} data-zoom>
+              <Image
+                src={thankYouCard}
+                alt="A signed farewell card from the committee next to a 3D-printed pickaxe trophy engraved with my name"
+                width={1100}
+                loading="lazy"
+              />
+            </a>
+            <figcaption>A signed card and a 3D-printed trophy from the committee.</figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 
+  <dialog class="lightbox" data-lightbox aria-label="Full size image">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">
+      ×
+    </button>
+    <img data-lightbox-image src="" alt="" />
+  </dialog>
 
 </BaseLayout>
 
@@ -218,6 +269,39 @@ const reportPageImages = Object.entries(pageModules)
     });
   };
 
+  // Clicking a photo opens it full size. Without JS the links simply open the
+  // image itself, so nothing is lost.
+  const bindLightbox = () => {
+    const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const image = dialog?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+    if (!dialog || !image) return;
+
+    const close = () => {
+      if (dialog.open) dialog.close();
+      image.removeAttribute('src');
+    };
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-zoom]').forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        const caption = trigger.querySelector('img')?.alt ?? '';
+        image.src = trigger.href;
+        image.alt = caption;
+        dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener('close', () => image.removeAttribute('src'));
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', close);
+    // Clicking the backdrop (anywhere outside the image) dismisses it too.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) close();
+    });
+  };
+
   /* The router swaps the body, so listeners are bound fresh each time. */
-  document.addEventListener('astro:page-load', bindReport);
+  document.addEventListener('astro:page-load', () => {
+    bindReport();
+    bindLightbox();
+  });
 </script>

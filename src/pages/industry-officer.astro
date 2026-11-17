@@ -61,9 +61,9 @@ const [sponsorsFull, agmFull, cardFull] = await Promise.all(
         )}
         <a
           class="button"
-          href="https://drive.google.com/file/d/1xJ_bIke-vXt_xp9oWRvofHUxUZKqDA4h/view?usp=drive_link"
+          href={`mailto:${profile.email}?subject=${encodeURIComponent('2027 UQCS Prospectus request')}`}
         >
-          2027 UQCS Prospectus ↗
+          Email for the 2027 UQCS Prospectus ↗
         </a>
         <a class="button" href="https://github.com/UQComputingSociety/minutes">
           Committee minutes ↗
